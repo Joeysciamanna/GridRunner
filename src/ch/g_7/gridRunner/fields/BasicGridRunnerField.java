@@ -1,0 +1,21 @@
+package ch.g_7.gridRunner.fields;
+
+import ch.g_7.gridEngine.field.ImagedField;
+import ch.g_7.gridEngine.field.building.FieldCode;
+import ch.g_7.gridRunner.resources.Image;
+
+public abstract class BasicGridRunnerField extends ImagedField{
+
+	public BasicGridRunnerField(Image image) {
+		super(image.getPath());
+	}
+
+	public void doDamage() {
+		
+	}
+
+	@Override
+	public FieldCode getCode() {
+		return super.getCode();
+	}
+}
