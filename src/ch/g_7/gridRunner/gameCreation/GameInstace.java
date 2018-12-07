@@ -25,14 +25,7 @@ public class GameInstace {
 		this.controller2 = controller2;
 	}
 	
-	public Player getPlayer1() {
-		return (Player) grid.forEach(new Lambda<Field<?>, FieldStack>() {
-			@Override
-			public Field<?> apply(FieldStack o) {
-				
-			}
-		}).getNotNull();
-	}
+
 	
 	
 }

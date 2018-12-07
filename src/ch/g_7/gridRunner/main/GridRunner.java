@@ -21,11 +21,11 @@ public class GridRunner {
 		JFrame window = new JFrame("Grid Runner");
 		window.getContentPane().setLayout(null);
 		
-		FieldGrid grid = new MapReader(new File("resources/maps/map1.xml")).read().getGrid();
+		FieldGrid grid = new MapReader(new File("resources/maps/map1.xml")).read();
 		grid.getPanel().setLocation(new Point(0, 0));
 		window.add(grid.getPanel());
 		
-		Dimension gridSize = Calculator.calcSize(grid.getMapSize(), grid.getFieldSize());
+		Dimension gridSize = Calculator.calcSize(grid.getMapSizeInFields(), grid.getFieldSize());
 		
 		Inventory inventory = new Inventory(new Dimension(gridSize.width, grid.getFieldSize().height));
 		inventory.getPanel().setLocation(new Point(0, gridSize.height));
