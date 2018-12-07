@@ -8,7 +8,8 @@ public class GameCreationEvent {
 	public GameCreationEvent() {}
 	
 	public GameCreationEvent(boolean local,String mapName) {
-		
+		this.local = local;
+		this.mapName = mapName;
 	}
 	
 	public boolean isLocal() {

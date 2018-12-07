@@ -1,9 +1,7 @@
 package ch.g_7.gridRunner.gameCreation;
 
 import ch.g_7.gridEngine.core.FieldGrid;
-import ch.g_7.gridEngine.core.FieldStack;
-import ch.g_7.gridEngine.field.Field;
-import ch.g_7.gridEngine.helper.Lambda;
+import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.PlayerKeyListner.PlayerController;
 import ch.g_7.gridRunner.fields.Player;
 
@@ -25,7 +23,11 @@ public class GameInstace {
 		this.controller2 = controller2;
 	}
 	
-
+	public Player getPlayer(int n) {
+		return (Player) grid.getFieldWhere(new FieldCode("PLAYER",String.valueOf(n)));
+	}
 	
-	
+	public FieldGrid getGrid() {
+		return grid;
+	}
 }

@@ -13,7 +13,7 @@ public class GridRunnerFieldFactory extends DefaultFieldFactory{
 		
 		switch (code.getFieldType()) {
 		case "PLAYER":
-			return new Player();
+			return new Player(Integer.parseInt(code.getAdditionalArguments()[0]));
 		case "GRASS":
 			return new Grass();
 		default:

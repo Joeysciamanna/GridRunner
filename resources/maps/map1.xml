@@ -3,9 +3,11 @@
 	width="32">
 	<stack xPos="0" yPos="0">
 		<field code="GRASS: " />
+		<field code="PLAYER:1" />
 	</stack>
 	<stack xPos="1" yPos="0">
 		<field code="GRASS: " />
+		<field code="PLAYER:2" />
 	</stack>
 	<stack xPos="2" yPos="0">
 		<field code="GRASS: " />

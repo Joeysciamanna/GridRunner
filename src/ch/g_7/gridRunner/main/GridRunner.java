@@ -11,6 +11,9 @@ import ch.g_7.gridEngine.field.building.FieldCreationRegister;
 import ch.g_7.gridEngine.helper.Calculator;
 import ch.g_7.gridEngine.stream.MapReader;
 import ch.g_7.gridRunner.fields.building.GridRunnerFieldFactory;
+import ch.g_7.gridRunner.gameCreation.GameCreationEvent;
+import ch.g_7.gridRunner.gameCreation.GameCreator;
+import ch.g_7.gridRunner.gameCreation.GameInstace;
 import ch.g_7.gridRunner.inventory.Inventory;
 
 public class GridRunner {
@@ -21,7 +24,9 @@ public class GridRunner {
 		JFrame window = new JFrame("Grid Runner");
 		window.getContentPane().setLayout(null);
 		
-		FieldGrid grid = new MapReader(new File("resources/maps/map1.xml")).read();
+		GameInstace game = GameCreator.getNewGame(new GameCreationEvent(true,"map1"));
+		
+		FieldGrid grid = game.getGrid();
 		grid.getPanel().setLocation(new Point(0, 0));
 		window.add(grid.getPanel());
 		
