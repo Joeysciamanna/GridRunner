@@ -2,46 +2,55 @@ package ch.g_7.gridRunner.PlayerKeyListner;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
 
 public class KeyController extends PlayerController implements KeyListener{
 
 	protected KeySet keySet;
-	
-	public KeyController(Player player,KeySet keySet) {
+
+	public KeyController(Player player, KeySet keySet) {
 		super(player);
 		this.keySet = keySet;
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {	
 		int keyCode = e.getKeyCode();
 		
-		if(keyCode == keySet.getUp()) {
-			player.moveUp(1);
-		}else if(keyCode == keySet.getLeft()) {
-			player.moveLeft(1);
-		}else if(keyCode == keySet.getDown()) {
-			player.moveDown(1);
-		}else if(keyCode == keySet.getRight()) {
-			player.moveRight(1);
+		if(keySet.getUp() == keyCode) {
+			up = true;
+		}else if(keySet.getLeft() == keyCode) {
+			left = true;
+		}else if(keySet.getDown() == keyCode) {
+			down = true;
+		}else if(keySet.getRight() == keyCode) {
+			right = true;
 		}
+		control();
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		
+		if(keySet.getUp() == keyCode) {
+			up = false;
+		}else if(keySet.getLeft() == keyCode) {
+			left = false;
+		}else if(keySet.getDown() == keyCode) {
+			down = false;
+		}else if(keySet.getRight() == keyCode) {
+			right = false;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void keyTyped(KeyEvent e) {}

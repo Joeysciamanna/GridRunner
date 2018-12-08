@@ -2,27 +2,27 @@ package ch.g_7.gridRunner.gameCreation;
 
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
-import ch.g_7.gridRunner.PlayerKeyListner.PlayerController;
+import ch.g_7.gridRunner.PlayerKeyListner.KeyController;
 import ch.g_7.gridRunner.fields.Player;
 
 public class GameInstace {
 
 	private FieldGrid grid;
-	private PlayerController controller1;
-	private PlayerController controller2;
+	private KeyController controller1;
+	private KeyController controller2;
 	
 	public void setGrid(FieldGrid grid) {
 		this.grid = grid;
 	}
 	
-	public void setController1(PlayerController controller1) {
-		this.controller1 = controller1;
+	public void addController(KeyController controller) {
+		if(controller1 == null) {
+			controller1 = controller;
+		}else {
+			controller2 = controller;
+		}
 	}
-	
-	public void setController2(PlayerController controller2) {
-		this.controller2 = controller2;
-	}
-	
+		
 	public Player getPlayer(int n) {
 		return (Player) grid.getFieldWhere(new FieldCode("PLAYER",String.valueOf(n)));
 	}
@@ -30,4 +30,23 @@ public class GameInstace {
 	public FieldGrid getGrid() {
 		return grid;
 	}
+
+	public KeyController getController1() {
+		return controller1;
+	}
+	public KeyController getController2() {
+		return controller2;
+	}
+	
+	public void activateControllers() {
+		if (controller1 != null) {
+			Thread t = new Thread(controller1);
+			t.start();
+		}
+		if (controller2 != null) {
+			Thread t = new Thread(controller2);
+			t.start();
+		}
+	}
+	
 }
