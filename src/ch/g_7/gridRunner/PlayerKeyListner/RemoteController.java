@@ -27,7 +27,6 @@ public class RemoteController extends PlayerController{
 			try {
 				ArrayList<Integer> controls = controllerAgent.getControls(player.getCleintId());
 				if(!controls.isEmpty()) {
-					System.out.println("Exec. Controlls for: " + player.getCleintId().getId() + "  (" + controls.get(0) + (controls.size()>1?"... ":"") + ")");
 					for (Integer control:controls) {
 						switch (control) {
 						case KeyEvent.VK_W:

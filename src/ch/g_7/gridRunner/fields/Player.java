@@ -12,9 +12,8 @@ public class Player extends BasicGridRunnerField implements Movable{
 	private ClientId cleintId;
 	private int player;
 	
-	public Player(int player,ClientId cleintId) {
+	public Player(int player) {
 		super(Image.valueOf("PLAYER" + player + "_UP"));
-		this.cleintId = cleintId;
 		this.player = player;
 	}
 
