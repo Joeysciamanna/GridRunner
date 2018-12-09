@@ -43,7 +43,6 @@ public class RemoteController extends PlayerController{
 							player.moveRight(1);
 							break;
 						}
-						player.f
 					}					
 				}
 			} catch (RemoteException e) {
