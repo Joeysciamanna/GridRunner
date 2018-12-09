@@ -44,7 +44,7 @@ public class GameCreator {
 				
 				Player villan = game.getPlayer(onlineGameInstance.getVillanNr(id));
 				villan.setCleintId(onlineGameInstance.geVillanId(id));
-				game.addController(new RemoteController(player, ServerConnectionEstablisher.getControllerAgent()));
+				game.addController(new RemoteController(villan, ServerConnectionEstablisher.getControllerAgent()));
 				
 			} catch (RemoteException | NotBoundException e) {
 				e.printStackTrace();
