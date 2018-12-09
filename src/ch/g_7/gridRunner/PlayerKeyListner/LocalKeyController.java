@@ -50,7 +50,7 @@ public class LocalKeyController extends KeyController {
 			}
 		}
 		for (Integer i : execControls) {
-			controls.remove(i);
+			controls.remove(i.intValue());
 		}
 		
 	}
