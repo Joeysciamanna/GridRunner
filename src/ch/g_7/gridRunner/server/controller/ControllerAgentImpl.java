@@ -21,7 +21,7 @@ public class ControllerAgentImpl extends UnicastRemoteObject implements Controll
 	@Override
 	public synchronized void registerControl(ControlEvent controlEvent) throws RemoteException {
 		int id = controlEvent.getAppliedTo().getId();
-		System.out.println("Registering Controlls for: " + id);
+		//System.out.println("Registering Controlls for: " + id);
 		if(controls.containsKey(id)) {
 			controls.get(id).add(controlEvent.getControl());
 		}else {
@@ -35,7 +35,7 @@ public class ControllerAgentImpl extends UnicastRemoteObject implements Controll
 		int id = client.getId();
 		
 		if(controls.containsKey(id)) {
-			System.out.println("Sending controls to: " + id);
+			//System.out.println("Sending controls to: " + id);
 			ArrayList<Integer> control = controls.get(id);
 			controls.remove(id);
 			return control;

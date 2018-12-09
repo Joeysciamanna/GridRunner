@@ -1,5 +1,9 @@
 package ch.g_7.gridRunner.PlayerKeyListner;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
 import ch.g_7.gridRunner.server.controller.ControllerAgent;
@@ -7,7 +11,8 @@ import ch.g_7.gridRunner.server.controller.ControllerAgent;
 public class LocalKeyController extends KeyController {
 
 	private ControllerAgent controllerAgent;
-
+	private ArrayList<Integer> controls = new ArrayList<>();
+	
 	public LocalKeyController(Player player, KeySet keySet, ControllerAgent controllerAgent) {
 		super(player, keySet);
 		this.controllerAgent = controllerAgent;
@@ -15,26 +20,39 @@ public class LocalKeyController extends KeyController {
 
 	@Override
 	protected void control() {
-		try {
 		if (up) {
-			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getUp(),player.getCleintId()));
+			controls.add(KeySet.WASD.getUp());
 			player.moveUp(1);
 		}
 		if (left) {
-			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getLeft(),player.getCleintId()));
+			controls.add(KeySet.WASD.getLeft());
 			player.moveLeft(1);
 		}
 		if (down) {
-			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getDown(),player.getCleintId()));
+			controls.add(KeySet.WASD.getDown());
 			player.moveDown(1);
 		}
 		if (right) {
-			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getRight(),player.getCleintId()));
+			controls.add(KeySet.WASD.getRight());
 			player.moveRight(1);
 		}
-		}catch (Exception e) {
-			e.printStackTrace();
+		execRegisterdControls();
+	}
+
+	private void execRegisterdControls() {
+		ArrayList<Integer> execControls = new ArrayList<>();
+		for (Integer c : controls) {
+			try {
+				controllerAgent.registerControl(new ControlEvent(c, player.getCleintId()));
+				execControls.add(controls.indexOf(c));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
+		for (Integer i : execControls) {
+			controls.remove(i);
+		}
+		
 	}
 
 }
