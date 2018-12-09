@@ -49,7 +49,7 @@ public class GameAgentImpl extends UnicastRemoteObject implements GameAgent {
 	
 	private synchronized void clearSession() {
 		if(shared1 && shared2) {
-			System.err.println("Clearing Session");
+			System.err.println("Clearing Session\n");
 			client1 = null;
 			client2 = null;
 			shared1 = false;

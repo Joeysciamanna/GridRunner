@@ -1,8 +1,6 @@
 package ch.g_7.gridRunner.PlayerKeyListner;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
@@ -11,8 +9,7 @@ import ch.g_7.gridRunner.server.controller.ControllerAgent;
 public class LocalKeyController extends KeyController {
 
 	private ControllerAgent controllerAgent;
-	private ArrayList<Integer> controls = new ArrayList<>();
-	
+
 	public LocalKeyController(Player player, KeySet keySet, ControllerAgent controllerAgent) {
 		super(player, keySet);
 		this.controllerAgent = controllerAgent;
@@ -21,39 +18,57 @@ public class LocalKeyController extends KeyController {
 	@Override
 	protected void control() {
 		if (up) {
-			controls.add(KeySet.WASD.getUp());
+			try {
+				controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getUp(),player.getCleintId()));
+			} catch (RemoteException e) {
+				System.out.println("Error at Sending Controls,tryiing again");
+				try {
+					controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getUp(),player.getCleintId()));
+				} catch (RemoteException e1) {
+					System.out.println("Error at Sending Controls");
+				}
+			}
 			player.moveUp(1);
 		}
 		if (left) {
-			controls.add(KeySet.WASD.getLeft());
+			try {
+				controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getLeft(),player.getCleintId()));
+			} catch (RemoteException e) {
+				System.out.println("Error at Sending Controls,tryiing again");
+				try {
+					controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getLeft(),player.getCleintId()));
+				} catch (RemoteException e1) {
+					System.out.println("Error at Sending Controls");
+				}
+			}
 			player.moveLeft(1);
 		}
 		if (down) {
-			controls.add(KeySet.WASD.getDown());
+			try {
+				controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getDown(),player.getCleintId()));
+			} catch (RemoteException e) {
+				System.out.println("Error at Sending Controls,tryiing again");
+				try {
+					controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getDown(),player.getCleintId()));
+				} catch (RemoteException e1) {
+					System.out.println("Error at Sending Controls");
+				}
+			}
 			player.moveDown(1);
 		}
 		if (right) {
-			controls.add(KeySet.WASD.getRight());
-			player.moveRight(1);
-		}
-		execRegisterdControls();
-	}
-
-	private void execRegisterdControls() {
-		for (Integer c : controls) {
 			try {
-				controllerAgent.registerControl(new ControlEvent(c, player.getCleintId()));
+				controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getRight(),player.getCleintId()));
 			} catch (RemoteException e) {
-				System.err.println("Error, trying again");
+				System.out.println("Error at Sending Controls,tryiing again");
 				try {
-					controllerAgent.registerControl(new ControlEvent(c, player.getCleintId()));
+					controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getRight(),player.getCleintId()));
 				} catch (RemoteException e1) {
-					System.err.println("Error, Faild");
+					System.out.println("Error at Sending Controls");
 				}
 			}
+			player.moveRight(1);
 		}
-		controls.clear();
-		
 	}
 
 }

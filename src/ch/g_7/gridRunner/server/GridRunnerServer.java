@@ -26,8 +26,7 @@ public class GridRunnerServer extends UnicastRemoteObject{
 			
 			registry.rebind(Agent.CLIENT_ID.getName(), new ClientIdAgentImpl());
 			
-			System.err.println("SERVER READY");
-			System.err.println(Arrays.toString(registry.list()));		
+			System.err.println("---SERVER READY---\n");	
 			
 		} catch (Exception e) {
 
