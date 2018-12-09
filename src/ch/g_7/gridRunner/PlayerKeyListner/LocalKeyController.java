@@ -40,18 +40,19 @@ public class LocalKeyController extends KeyController {
 	}
 
 	private void execRegisterdControls() {
-		ArrayList<Integer> execControls = new ArrayList<>();
 		for (Integer c : controls) {
 			try {
 				controllerAgent.registerControl(new ControlEvent(c, player.getCleintId()));
-				execControls.add(controls.indexOf(c));
 			} catch (RemoteException e) {
-				e.printStackTrace();
+				System.err.println("Error, trying again");
+				try {
+					controllerAgent.registerControl(new ControlEvent(c, player.getCleintId()));
+				} catch (RemoteException e1) {
+					System.err.println("Error, Faild");
+				}
 			}
 		}
-		for (Integer i : execControls) {
-			controls.remove(i.intValue());
-		}
+		controls.clear();
 		
 	}
 
