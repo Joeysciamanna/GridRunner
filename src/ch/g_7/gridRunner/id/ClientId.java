@@ -1,6 +1,11 @@
 package ch.g_7.gridRunner.id;
 
-public class ClientId {
+import java.io.Serializable;
+
+public class ClientId implements Serializable{
+	
+	private static final long serialVersionUID = 2240429940354299312L;
+	
 	private int id;
 	
 	public ClientId(int id) {
@@ -12,6 +17,6 @@ public class ClientId {
 	}
 	
 	public boolean equals(ClientId id) {
-		return id.getId() == this.id;
+		return id!=null && id.getId() == this.id;
 	}
 }

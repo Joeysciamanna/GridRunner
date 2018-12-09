@@ -8,33 +8,20 @@ import ch.g_7.gridRunner.id.ClientId;
 
 public class ControlEvent implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3282450131385015277L;
 	
-	private ActionEvent actionEvent;
-	private ClientId sendFrom;
-	private KeyEvent keyEvent;
-	private KeySet keySet;
+	private int control;
+	private ClientId appliedTo;
 	
-	public ControlEvent(ClientId sendFrom,KeyEvent keyEvent,ActionEvent actionEvent,KeySet keySet) {
-		this.sendFrom = sendFrom;
-		this.keyEvent = keyEvent;
-		this.actionEvent = actionEvent;
-		this.keySet = keySet;
+	public ControlEvent(int control,ClientId appliedTo) {
+		this.appliedTo = appliedTo;
+		this.control = control;
 	}
 	
-	public ActionEvent getActionEvent() {
-		return actionEvent;
+	public ClientId getAppliedTo() {
+		return appliedTo;
 	}
-	
-	public KeyEvent getKeyEvent() {
-		return keyEvent;
-	}
-	
-	public ClientId getSender() {
-		return sendFrom;
-	}
-	
-	public KeySet getKeySet() {
-		return keySet;
+	public int getControl() {
+		return control;
 	}
 }

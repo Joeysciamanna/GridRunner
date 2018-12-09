@@ -1,44 +1,52 @@
 package ch.g_7.gridRunner.gameCreation;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import ch.g_7.gridEngine.stream.MapReader;
 import ch.g_7.gridRunner.PlayerKeyListner.KeyController;
+import ch.g_7.gridRunner.PlayerKeyListner.LocalKeyController;
+import ch.g_7.gridRunner.PlayerKeyListner.RemoteController;
+import ch.g_7.gridRunner.connection.ServerConnectionEstablisher;
+import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
-import ch.g_7.gridRunner.server.ServerInterface;
+import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.id.LocalClientId;
+import ch.g_7.gridRunner.server.game.GameAgent;
+import ch.g_7.gridRunner.server.gameCreation.OnlineGameInstance;
 
 public class GameCreator {
 
 	public static GameInstace getNewGame(GameCreationEvent event) {
 		GameInstace game = new GameInstace();
+
 		if (event.isLocal()) {
-			game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() +".xml")).read());
+			game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() + ".xml")).read());
 			game.addController(new KeyController(game.getPlayer(1), KeySet.WASD));
 			game.addController(new KeyController(game.getPlayer(2), KeySet.ARROW));
 		} else {
-			game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() +".xml")).read());
-			game.addController(new KeyController(game.getPlayer(1), KeySet.WASD));
-			game.addController(new KeyController(game.getPlayer(2), KeySet.ARROW));
-			
-			System.out.println("HIII");
+			OnlineGameInstance onlineGameInstance = null;
 			try {
-				ServerInterface look_up = (ServerInterface) Naming.lookup("rmi://localhost:1109/server");
+				ClientId id = LocalClientId.getClientId();
 				
-				while (look_up.helloTo("TEST") == null) {}
-				String test = look_up.helloTo("TEST");
-				System.out.println(test);
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NotBoundException e) {
-				// TODO Auto-generated catch block
+				GameAgent gameAgent = ServerConnectionEstablisher.getGameAgent();
+				
+				onlineGameInstance = gameAgent.joinGameSession(id);
+				while (onlineGameInstance == null) {
+					onlineGameInstance = gameAgent.joinGameSession(id);
+				}
+				game.setGrid(new MapReader(new File("resources/maps/" + onlineGameInstance.getMap() + ".xml")).read());
+				
+				Player player = game.getPlayer(onlineGameInstance.getPlayerNr(id));
+				player.setCleintId(id);
+				game.addController(new LocalKeyController(player, KeySet.WASD, ServerConnectionEstablisher.getControllerAgent()));
+				
+				Player villan = game.getPlayer(onlineGameInstance.getVillanNr(id));
+				villan.setCleintId(onlineGameInstance.geVillanId(id));
+				game.addController(new RemoteController(player, ServerConnectionEstablisher.getControllerAgent()));
+				
+			} catch (RemoteException | NotBoundException e) {
 				e.printStackTrace();
 			}
 		}

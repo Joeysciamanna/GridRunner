@@ -1,48 +1,40 @@
 package ch.g_7.gridRunner.PlayerKeyListner;
 
-import java.awt.event.KeyEvent;
-import java.rmi.RemoteException;
-
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
-import ch.g_7.gridRunner.id.ClientId;
-import ch.g_7.gridRunner.id.Identifiable;
-import ch.g_7.gridRunner.server.ControllerAgent;
+import ch.g_7.gridRunner.server.controller.ControllerAgent;
 
-public class LocalKeyController extends KeyController implements Identifiable {
+public class LocalKeyController extends KeyController {
 
-	private ClientId id;
-	private ControllerAgent rci;
+	private ControllerAgent controllerAgent;
 
-	public LocalKeyController(Player player, KeySet keySet, ClientId id ,ControllerAgent rci) {
+	public LocalKeyController(Player player, KeySet keySet, ControllerAgent controllerAgent) {
 		super(player, keySet);
-		this.id = id;
-		this.rci = rci;
+		this.controllerAgent = controllerAgent;
 	}
 
 	@Override
-	public ClientId getId() {
-		return id;
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
+	protected void control() {
 		try {
-			rci.control(new ControlEvent(id, e, ActionEvent.KEY_PRESSED,keySet));
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
+		if (up) {
+			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getUp(),player.getCleintId()));
+			player.moveUp(1);
 		}
-		super.keyPressed(e);
-	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		try {
-			rci.control(new ControlEvent(id, e, ActionEvent.KEY_RELEASED,keySet));
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
+		if (left) {
+			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getLeft(),player.getCleintId()));
+			player.moveLeft(1);
 		}
-		super.keyReleased(e);
+		if (down) {
+			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getDown(),player.getCleintId()));
+			player.moveDown(1);
+		}
+		if (right) {
+			controllerAgent.registerControl(new ControlEvent(KeySet.WASD.getRight(),player.getCleintId()));
+			player.moveRight(1);
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

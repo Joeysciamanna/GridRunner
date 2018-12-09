@@ -2,6 +2,11 @@ package ch.g_7.gridRunner.main;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCreationRegister;
@@ -15,6 +20,7 @@ import ch.g_7.gridRunner.inventory.Inventory;
 public class GridRunner {
 
 	public static void main(String[] args) {
+		
 		FieldCreationRegister.setDefaultFactory(new GridRunnerFieldFactory());
 		
 		JFrame window = new JFrame("Grid Runner");

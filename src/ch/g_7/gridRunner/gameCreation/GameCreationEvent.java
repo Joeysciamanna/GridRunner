@@ -1,7 +1,11 @@
 package ch.g_7.gridRunner.gameCreation;
 
-public class GameCreationEvent {
+import java.io.Serializable;
 
+public class GameCreationEvent implements Serializable{
+
+	private static final long serialVersionUID = -932920361483957465L;
+	
 	private boolean local;
 	private String mapName;
 	

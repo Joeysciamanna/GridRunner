@@ -9,11 +9,47 @@ public class KeyController extends PlayerController implements KeyListener{
 
 	protected KeySet keySet;
 
+	protected boolean up;
+	protected boolean left;
+	protected boolean down;
+	protected boolean right;
+	
+	protected static final int MIN_SPEED = 300;
+	protected double speed = MIN_SPEED;
+	protected double speedDec = 2.7;
+	
 	public KeyController(Player player, KeySet keySet) {
 		super(player);
 		this.keySet = keySet;
 	}
-
+	
+	@Override
+	public void run() {
+		while(run) {
+			control();
+			try {
+				Thread.sleep((long) speed);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	protected void control() {
+		if(up) {
+			player.moveUp(1);
+		}
+		if(left) {
+			player.moveLeft(1);
+		}
+		if(down) {
+			player.moveDown(1);
+		}
+		if(right) {
+			player.moveRight(1);
+		}
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {	
 		int keyCode = e.getKeyCode();
@@ -44,13 +80,6 @@ public class KeyController extends PlayerController implements KeyListener{
 			right = false;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public void keyTyped(KeyEvent e) {}

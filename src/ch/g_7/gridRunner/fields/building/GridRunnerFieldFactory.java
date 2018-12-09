@@ -7,6 +7,7 @@ import ch.g_7.gridRunner.fields.Grass;
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.fields.Rock;
 import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.id.LocalClientId;
 
 public class GridRunnerFieldFactory extends DefaultFieldFactory{
 
@@ -15,7 +16,7 @@ public class GridRunnerFieldFactory extends DefaultFieldFactory{
 		
 		switch (code.getFieldType()) {
 		case "PLAYER":
-			return new Player(new ClientId(Integer.parseInt(code.getAdditionalArguments()[0])));
+			return new Player(Integer.parseInt(code.getAdditionalArguments()[0]),LocalClientId.getClientId());
 		case "GRASS":
 			return new Grass();
 		case "ROCK":
