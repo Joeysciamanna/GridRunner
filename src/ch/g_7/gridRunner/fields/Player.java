@@ -42,10 +42,6 @@ public class Player extends BasicGridRunnerField implements Movable{
 		return move(new Dimension(d, 0));
 	}
 	
-	public FieldStack getStack() {
-		return stack;
-	}
-	
 	@Override
 	public FieldCode getCode() {
 		return new FieldCode("PLAYER",String.valueOf(player));
