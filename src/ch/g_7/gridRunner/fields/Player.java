@@ -5,6 +5,7 @@ import ch.g_7.gridEngine.base.Movable;
 import ch.g_7.gridEngine.core.FieldStack;
 import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.playerStatus.PlayerStatus;
 import ch.g_7.gridRunner.resources.Image;
 
 public class Player extends BasicGridRunnerField implements Movable{
@@ -56,5 +57,14 @@ public class Player extends BasicGridRunnerField implements Movable{
 	
 	public ClientId getCleintId() {
 		return cleintId;
+	}
+	
+	public PlayerStatus getPlayerStatus() {
+		return new PlayerStatus(getPosition(), image);
+	}
+	
+	public void setPlayerStatus(PlayerStatus status) {
+		setPosition(status.getPosition());
+		this.setIcon(status.getImage());
 	}
 }

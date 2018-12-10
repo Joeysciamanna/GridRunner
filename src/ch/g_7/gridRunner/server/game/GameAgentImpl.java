@@ -19,6 +19,7 @@ public class GameAgentImpl extends UnicastRemoteObject implements GameAgent {
 		super();
 	}
 	
+	@Override
 	public synchronized OnlineGameInstance joinGameSession(ClientId client) throws RemoteException {
 		if(client1 == null && client2 == null) {
 			System.err.println("Client 1: " + client.getId() + " registered");

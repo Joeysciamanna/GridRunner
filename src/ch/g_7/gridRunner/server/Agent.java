@@ -2,7 +2,7 @@ package ch.g_7.gridRunner.server;
 
 public enum Agent {
 	GAME("gameAgent"),
-	CONTROLLER("controllerAgent"),
+	PLAYER_STATUS("playerStatusAgent"),
 	CLIENT_ID("clientIdAgent");
 	
 	private String name;

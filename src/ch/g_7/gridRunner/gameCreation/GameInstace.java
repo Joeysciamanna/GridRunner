@@ -2,23 +2,23 @@ package ch.g_7.gridRunner.gameCreation;
 
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
-import ch.g_7.gridRunner.PlayerKeyListner.KeyController;
-import ch.g_7.gridRunner.PlayerKeyListner.RemoteController;
+import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fields.Player;
+import ch.g_7.gridRunner.playerStatus.PlayerStatusWorker;
 
 public class GameInstace {
 
 	private FieldGrid grid;
-	private KeyController controller1;
-	private KeyController controller2;
-	private RemoteController remoteController1;
-	private RemoteController remoteController2;
+	private Controller controller1;
+	private Controller controller2;
+	private PlayerStatusWorker worker1;
+	private PlayerStatusWorker worker2;
 	
 	public void setGrid(FieldGrid grid) {
 		this.grid = grid;
 	}
 	
-	public void addController(KeyController controller) {
+	public void addController(Controller controller) {
 		if(controller1 == null) {
 			controller1 = controller;
 		}else {
@@ -26,13 +26,14 @@ public class GameInstace {
 		}
 	}
 		
-	public void addController(RemoteController controller) {
-		if(remoteController1 == null) {
-			remoteController1 = controller;
+	public void addPlayerStatusWorker(PlayerStatusWorker worker) {
+		if(worker1 == null) {
+			worker1 = worker;
 		}else {
-			remoteController2 = controller;
+			worker2 = worker;
 		}
 	}
+		
 	
 	public Player getPlayer(int n) {
 		return (Player) grid.getFieldWhere(new FieldCode("PLAYER",String.valueOf(n)));
@@ -42,10 +43,10 @@ public class GameInstace {
 		return grid;
 	}
 
-	public KeyController getController1() {
+	public Controller getController1() {
 		return controller1;
 	}
-	public KeyController getController2() {
+	public Controller getController2() {
 		return controller2;
 	}
 	
@@ -58,12 +59,12 @@ public class GameInstace {
 			Thread t = new Thread(controller2);
 			t.start();
 		}
-		if (remoteController1 != null) {
-			Thread t = new Thread(remoteController1);
+		if (worker1 != null) {
+			Thread t = new Thread(worker1);
 			t.start();
 		}
-		if (remoteController2 != null) {
-			Thread t = new Thread(remoteController2);
+		if (worker2 != null) {
+			Thread t = new Thread(worker2);
 			t.start();
 		}
 	}
