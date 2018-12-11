@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.id;
+package ch.g_7.gridRunner.identification;
 
 import java.io.Serializable;
 

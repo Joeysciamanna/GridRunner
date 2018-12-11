@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.id;
+package ch.g_7.gridRunner.identification;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.gameCreation;
+package ch.g_7.gridRunner.gameInstantiation;
 
 import java.io.File;
 import java.rmi.NotBoundException;
@@ -8,8 +8,8 @@ import ch.g_7.gridRunner.connection.ServerConnectionEstablisher;
 import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
-import ch.g_7.gridRunner.id.ClientId;
-import ch.g_7.gridRunner.id.LocalClientId;
+import ch.g_7.gridRunner.identification.ClientId;
+import ch.g_7.gridRunner.identification.LocalClientId;
 import ch.g_7.gridRunner.playerStatus.PlayerStatusApplier;
 import ch.g_7.gridRunner.playerStatus.PlayerStatusSender;
 import ch.g_7.gridRunner.server.game.GameAgent;

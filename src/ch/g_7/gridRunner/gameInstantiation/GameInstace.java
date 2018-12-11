@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.gameCreation;
+package ch.g_7.gridRunner.gameInstantiation;
 
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;

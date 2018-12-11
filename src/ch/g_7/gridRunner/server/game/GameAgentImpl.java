@@ -3,7 +3,7 @@ package ch.g_7.gridRunner.server.game;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.identification.ClientId;
 import ch.g_7.gridRunner.server.gameCreation.OnlineGameInstance;
 
 public class GameAgentImpl extends UnicastRemoteObject implements GameAgent {

@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import ch.g_7.gridEngine.base.Movable;
 import ch.g_7.gridEngine.core.FieldStack;
 import ch.g_7.gridEngine.field.building.FieldCode;
-import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.identification.ClientId;
 import ch.g_7.gridRunner.playerStatus.PlayerStatus;
 import ch.g_7.gridRunner.resources.Image;
 
