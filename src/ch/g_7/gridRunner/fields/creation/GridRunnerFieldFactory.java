@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.fields.building;
+package ch.g_7.gridRunner.fields.creation;
 
 import ch.g_7.gridEngine.field.Field;
 import ch.g_7.gridEngine.field.building.DefaultFieldFactory;
@@ -6,8 +6,8 @@ import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.fields.Grass;
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.fields.Rock;
-import ch.g_7.gridRunner.id.ClientId;
-import ch.g_7.gridRunner.id.LocalClientId;
+import ch.g_7.gridRunner.identification.ClientId;
+import ch.g_7.gridRunner.identification.LocalClientId;
 
 public class GridRunnerFieldFactory extends DefaultFieldFactory{
 
@@ -16,7 +16,7 @@ public class GridRunnerFieldFactory extends DefaultFieldFactory{
 		
 		switch (code.getFieldType()) {
 		case "PLAYER":
-			return new Player(Integer.parseInt(code.getAdditionalArguments()[0]),LocalClientId.getClientId());
+			return new Player(Integer.parseInt(code.getAdditionalArguments()[0]));
 		case "GRASS":
 			return new Grass();
 		case "ROCK":

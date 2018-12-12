@@ -4,30 +4,28 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
 import ch.g_7.gridRunner.server.Agent;
-import ch.g_7.gridRunner.server.controller.ControllerAgent;
 import ch.g_7.gridRunner.server.game.GameAgent;
 import ch.g_7.gridRunner.server.id.ClientIdAgent;
+import ch.g_7.gridRunner.server.playerStatus.PlayerStatusAgent;
 
 public class ServerConnectionEstablisher{
 
 	private static final String DOMAIN = "rmi://192.168.1.114:1109/";
 	
 	private static GameAgent gameAgent;
-	private static ControllerAgent controllerAgent;
+	private static PlayerStatusAgent playerStatusAgent;
 	private static ClientIdAgent clientIdAgent;
 	
-	public static ControllerAgent getControllerAgent() throws RemoteException, NotBoundException {
-		if(controllerAgent==null) {
+	public static PlayerStatusAgent getPlayerStatusAgent() throws RemoteException, NotBoundException {
+		if(playerStatusAgent==null) {
 			try {
-				controllerAgent = (ControllerAgent) Naming.lookup(DOMAIN+Agent.CONTROLLER.getName());
+				playerStatusAgent = (PlayerStatusAgent) Naming.lookup(DOMAIN+Agent.PLAYER_STATUS.getName());
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return controllerAgent;
+		return playerStatusAgent;
 	}
 	
 	public static GameAgent getGameAgent() throws RemoteException, NotBoundException {
@@ -35,7 +33,6 @@ public class ServerConnectionEstablisher{
 			try {
 				gameAgent = (GameAgent) Naming.lookup(DOMAIN+Agent.GAME.getName());
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -47,7 +44,6 @@ public class ServerConnectionEstablisher{
 			try {
 				clientIdAgent = (ClientIdAgent) Naming.lookup(DOMAIN+Agent.CLIENT_ID.getName());
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

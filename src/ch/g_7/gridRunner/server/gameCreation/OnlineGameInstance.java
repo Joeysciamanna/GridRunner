@@ -2,7 +2,7 @@ package ch.g_7.gridRunner.server.gameCreation;
 
 import java.io.Serializable;
 
-import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.identification.ClientId;
 
 public class OnlineGameInstance implements Serializable{
 

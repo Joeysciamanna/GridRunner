@@ -1,18 +1,17 @@
-package ch.g_7.gridRunner.gameCreation;
+package ch.g_7.gridRunner.gameInstantiation;
 
 import java.io.File;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
 import ch.g_7.gridEngine.stream.MapReader;
-import ch.g_7.gridRunner.PlayerKeyListner.KeyController;
-import ch.g_7.gridRunner.PlayerKeyListner.LocalKeyController;
-import ch.g_7.gridRunner.PlayerKeyListner.RemoteController;
 import ch.g_7.gridRunner.connection.ServerConnectionEstablisher;
+import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
-import ch.g_7.gridRunner.id.ClientId;
-import ch.g_7.gridRunner.id.LocalClientId;
+import ch.g_7.gridRunner.identification.ClientId;
+import ch.g_7.gridRunner.identification.LocalClientId;
+import ch.g_7.gridRunner.playerStatus.PlayerStatusApplier;
+import ch.g_7.gridRunner.playerStatus.PlayerStatusSender;
 import ch.g_7.gridRunner.server.game.GameAgent;
 import ch.g_7.gridRunner.server.gameCreation.OnlineGameInstance;
 
@@ -23,8 +22,8 @@ public class GameCreator {
 
 		if (event.isLocal()) {
 			game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() + ".xml")).read());
-			game.addController(new KeyController(game.getPlayer(1), KeySet.WASD));
-			game.addController(new KeyController(game.getPlayer(2), KeySet.ARROW));
+			game.addController(new Controller(game.getPlayer(1), KeySet.WASD));
+			game.addController(new Controller(game.getPlayer(2), KeySet.ARROW));
 		} else {
 			OnlineGameInstance onlineGameInstance = null;
 			try {
@@ -40,11 +39,12 @@ public class GameCreator {
 				
 				Player player = game.getPlayer(onlineGameInstance.getPlayerNr(id));
 				player.setCleintId(id);
-				game.addController(new LocalKeyController(player, KeySet.WASD, ServerConnectionEstablisher.getControllerAgent()));
+				game.addPlayerStatusWorker(new PlayerStatusSender(player, ServerConnectionEstablisher.getPlayerStatusAgent()));
+				game.addController(new Controller(player, KeySet.WASD));
 				
 				Player villan = game.getPlayer(onlineGameInstance.getVillanNr(id));
 				villan.setCleintId(onlineGameInstance.geVillanId(id));
-				game.addController(new RemoteController(villan, ServerConnectionEstablisher.getControllerAgent()));
+				game.addPlayerStatusWorker(new PlayerStatusApplier(villan, ServerConnectionEstablisher.getPlayerStatusAgent()));
 				
 			} catch (RemoteException | NotBoundException e) {
 				e.printStackTrace();

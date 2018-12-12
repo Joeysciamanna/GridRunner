@@ -5,10 +5,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Arrays;
-
-import ch.g_7.gridRunner.server.controller.ControllerAgentImpl;
 import ch.g_7.gridRunner.server.game.GameAgentImpl;
 import ch.g_7.gridRunner.server.id.ClientIdAgentImpl;
+import ch.g_7.gridRunner.server.playerStatus.PlayerStatusAgentImpl;
 
 public class GridRunnerServer extends UnicastRemoteObject{
 
@@ -22,7 +21,7 @@ public class GridRunnerServer extends UnicastRemoteObject{
 			
 			registry.rebind(Agent.GAME.getName(), new GameAgentImpl());
 			
-			registry.rebind(Agent.CONTROLLER.getName(), new ControllerAgentImpl());
+			registry.rebind(Agent.PLAYER_STATUS.getName(), new PlayerStatusAgentImpl());
 			
 			registry.rebind(Agent.CLIENT_ID.getName(), new ClientIdAgentImpl());
 			

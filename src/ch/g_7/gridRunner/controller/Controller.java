@@ -1,12 +1,17 @@
-package ch.g_7.gridRunner.PlayerKeyListner;
+package ch.g_7.gridRunner.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
 
-public class KeyController extends PlayerController implements KeyListener{
 
+public class Controller implements Runnable, KeyListener{
+	
+	protected boolean run = true;
+	
+	protected Player player;
 	protected KeySet keySet;
 
 	protected boolean up;
@@ -18,10 +23,12 @@ public class KeyController extends PlayerController implements KeyListener{
 	protected double speed = MIN_SPEED;
 	protected double speedDec = 2.7;
 	
-	public KeyController(Player player, KeySet keySet) {
-		super(player);
+	public Controller(Player player, KeySet keySet) {
+		this.player = player;
 		this.keySet = keySet;
 	}
+	
+
 	
 	@Override
 	public void run() {
@@ -83,5 +90,8 @@ public class KeyController extends PlayerController implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
-
+	
+	public void setRun(boolean run) {
+		this.run = run;
+	}
 }

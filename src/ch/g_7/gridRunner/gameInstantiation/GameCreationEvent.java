@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.gameCreation;
+package ch.g_7.gridRunner.gameInstantiation;
 
 import java.io.Serializable;
 

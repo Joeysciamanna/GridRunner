@@ -4,7 +4,8 @@ import java.awt.Dimension;
 import ch.g_7.gridEngine.base.Movable;
 import ch.g_7.gridEngine.core.FieldStack;
 import ch.g_7.gridEngine.field.building.FieldCode;
-import ch.g_7.gridRunner.id.ClientId;
+import ch.g_7.gridRunner.identification.ClientId;
+import ch.g_7.gridRunner.playerStatus.PlayerStatus;
 import ch.g_7.gridRunner.resources.Image;
 
 public class Player extends BasicGridRunnerField implements Movable{
@@ -12,9 +13,8 @@ public class Player extends BasicGridRunnerField implements Movable{
 	private ClientId cleintId;
 	private int player;
 	
-	public Player(int player,ClientId cleintId) {
+	public Player(int player) {
 		super(Image.valueOf("PLAYER" + player + "_UP"));
-		this.cleintId = cleintId;
 		this.player = player;
 	}
 
@@ -42,10 +42,6 @@ public class Player extends BasicGridRunnerField implements Movable{
 		return move(new Dimension(d, 0));
 	}
 	
-	public FieldStack getStack() {
-		return stack;
-	}
-	
 	@Override
 	public FieldCode getCode() {
 		return new FieldCode("PLAYER",String.valueOf(player));
@@ -57,5 +53,14 @@ public class Player extends BasicGridRunnerField implements Movable{
 	
 	public ClientId getCleintId() {
 		return cleintId;
+	}
+	
+	public PlayerStatus getPlayerStatus() {
+		return new PlayerStatus(getPosition(), image);
+	}
+	
+	public void setPlayerStatus(PlayerStatus status) {
+		setPosition(status.getPosition());
+		this.setIcon(status.getImage());
 	}
 }
