@@ -12,7 +12,7 @@ import ch.g_7.gridRunner.server.id.ClientIdAgent;
 
 public class ServerConnectionEstablisher{
 
-	private static final String DOMAIN = "rmi://localhost:1109/";
+	private static final String DOMAIN = "rmi://192.168.1.114:1109/";
 	
 	private static GameAgent gameAgent;
 	private static ControllerAgent controllerAgent;
