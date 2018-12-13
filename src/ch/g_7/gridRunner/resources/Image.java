@@ -11,7 +11,9 @@ public enum Image {
 	PLAYER2_RIGHT("resources/players/PLAYER2-RIGHT.png"),
 	
 	GRASS("resources/fields/GRASS.png"),
-	ROCK("resources/fields/ROCK.png");
+	ROCK("resources/fields/ROCK.png"),
+	
+	MAIN_VIEW("resources/images/MAIN-VIEW.png");
 	
 	
 	private String path;

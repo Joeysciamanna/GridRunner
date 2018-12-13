@@ -1,13 +1,11 @@
-package ch.g_7.gridRunner.main;
+package ch.g_7.gridRunner.gui.main;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.util.Arrays;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCreationRegister;
 import ch.g_7.gridEngine.helper.Calculator;
@@ -17,32 +15,35 @@ import ch.g_7.gridRunner.gameInstantiation.GameCreator;
 import ch.g_7.gridRunner.gameInstantiation.GameInstace;
 import ch.g_7.gridRunner.inventory.Inventory;
 
-public class GridRunner {
+public class GameScreen extends Screen<JPanel>{
 
-	public static void main(String[] args) {
-		
-		FieldCreationRegister.setDefaultFactory(new GridRunnerFieldFactory());
-		
-		JFrame window = new JFrame("Grid Runner");
-		window.getContentPane().setLayout(null);
-		
-		GameInstace game = GameCreator.getNewGame(new GameCreationEvent(true,"map1"));
-		
+	private JPanel panel = new JPanel();
+	
+	public GameScreen() {
+		panel.setLayout(null);
+	}
+	
+	@Override
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void start(GameInstace game) {
 		FieldGrid grid = game.getGrid();
 		grid.getPanel().setLocation(new Point(0, 0));
-		window.add(grid.getPanel());
+		panel.add(grid.getPanel());
 		
 		Dimension gridSize = Calculator.calcSize(grid.getMapSizeInFields(), grid.getFieldSize());
 		
 		Inventory inventory = new Inventory(new Dimension(gridSize.width, grid.getFieldSize().height));
 		inventory.getPanel().setLocation(new Point(0, gridSize.height));
-		window.add(inventory.getPanel());
+		panel.add(inventory.getPanel());
 	
-		window.addKeyListener(game.getController1());
-		window.addKeyListener(game.getController2());
+		Window.getInstance().addKeyListener(game.getController1());
+		Window.getInstance().addKeyListener(game.getController2());
 		
 		game.activateControllers();
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
+		
+		panel.updateUI();
 	}
 }

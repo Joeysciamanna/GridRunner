@@ -60,7 +60,6 @@ public class Controller implements Runnable, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {	
 		int keyCode = e.getKeyCode();
-		
 		if(keySet.getUp() == keyCode) {
 			up = true;
 		}else if(keySet.getLeft() == keyCode) {
