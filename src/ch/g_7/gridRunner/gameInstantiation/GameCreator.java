@@ -30,7 +30,7 @@ public class GameCreator{
 				ClientId id = LocalClientId.getClientId();
 				
 				GameAgent gameAgent = ServerConnectionEstablisher.getGameAgent();
-				
+				 
 				onlineGameInstance = gameAgent.joinGameSession(id);
 				while (onlineGameInstance == null) {
 					onlineGameInstance = gameAgent.joinGameSession(id);
