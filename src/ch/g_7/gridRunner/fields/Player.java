@@ -11,44 +11,48 @@ import ch.g_7.gridRunner.resources.Image;
 public class Player extends BasicGridRunnerField implements Movable{
 
 	private ClientId cleintId;
-	private int player;
+	private int playerNr;
 	
 	public Player(int player) {
 		super(Image.valueOf("PLAYER" + player + "_UP"));
-		this.player = player;
+		this.playerNr = player;
 	}
 
 	@Override
 	public boolean moveUp(int d) {
-		setIcon(Image.valueOf("PLAYER" + player + "_UP"));
+		setIcon(Image.valueOf("PLAYER" + playerNr + "_UP"));
 		return move(new Dimension(0, -d));
 	}
 	
 	@Override
 	public boolean moveDown(int d) {
-		setIcon(Image.valueOf("PLAYER" + player + "_DOWN"));
+		setIcon(Image.valueOf("PLAYER" + playerNr + "_DOWN"));
 		return move(new Dimension(0, d));
 	}
 	
 	@Override
 	public boolean moveLeft(int d) {
-		setIcon(Image.valueOf("PLAYER" + player + "_LEFT"));
+		setIcon(Image.valueOf("PLAYER" + playerNr + "_LEFT"));
 		return move(new Dimension(-d, 0));
 	}
 	
 	@Override
 	public boolean moveRight(int d) {
-		setIcon(Image.valueOf("PLAYER" + player + "_RIGHT"));
+		setIcon(Image.valueOf("PLAYER" + playerNr + "_RIGHT"));
 		return move(new Dimension(d, 0));
 	}
 	
 	@Override
 	public FieldCode getCode() {
-		return new FieldCode("PLAYER",String.valueOf(player));
+		return new FieldCode("PLAYER",String.valueOf(playerNr));
 	}
 
 	public void setCleintId(ClientId cleintId) {
 		this.cleintId = cleintId;
+	}
+	
+	public int getPlayerNr() {
+		return playerNr;
 	}
 	
 	public ClientId getCleintId() {
@@ -60,7 +64,9 @@ public class Player extends BasicGridRunnerField implements Movable{
 	}
 	
 	public void setPlayerStatus(PlayerStatus status) {
-		setPosition(status.getPosition());
-		this.setIcon(status.getImage());
+		if(!getPosition().equals(status.getPosition())) {
+			setPosition(status.getPosition());
+			this.setIcon(status.getImage());
+		}
 	}
 }

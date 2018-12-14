@@ -17,7 +17,8 @@ public class PlayerStatusSender extends PlayerStatusWorker{
 		while(run) {
 			try {
 				playerStatusAgent.setPlayerStatus(player.getCleintId(), player.getPlayerStatus());
-			} catch (RemoteException e) {
+				Thread.sleep(20);
+			} catch (RemoteException | InterruptedException e) {
 				e.printStackTrace();
 			}
 		}

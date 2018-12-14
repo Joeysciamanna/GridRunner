@@ -26,7 +26,12 @@ public class GridRunner {
 		JFrame window = new JFrame("Grid Runner");
 		window.getContentPane().setLayout(null);
 		
-		GameInstace game = GameCreator.getNewGame(new GameCreationEvent(true,"map1"));
+		GameCreator creator = new GameCreator();
+		creator.createGame(new GameCreationEvent(true,"map1"));
+		GameInstace game = creator.getGame();
+		while (game == null) {
+			game = creator.getGame();
+		}
 		
 		FieldGrid grid = game.getGrid();
 		grid.getPanel().setLocation(new Point(0, 0));

@@ -14,6 +14,7 @@ public abstract class BasicGridRunnerField extends ImagedField{
 	
 	public BasicGridRunnerField(Image image) {
 		super(new ImageIcon(image.getPath()));
+		this.image = image;
 	}
 
 	public void doDamage() {
@@ -22,11 +23,8 @@ public abstract class BasicGridRunnerField extends ImagedField{
 	
 	public void setIcon(Image image) {
 		setIcon(new ImageIcon(image.getPath()));
+		this.image = image;
 	}
 
-	@Override
-	public FieldCode getCode() {
-		return super.getCode();
-	}
 	
 }

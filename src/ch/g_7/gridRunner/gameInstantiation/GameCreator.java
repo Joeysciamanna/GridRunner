@@ -15,11 +15,11 @@ import ch.g_7.gridRunner.playerStatus.PlayerStatusSender;
 import ch.g_7.gridRunner.server.game.GameAgent;
 import ch.g_7.gridRunner.server.gameCreation.OnlineGameInstance;
 
-public class GameCreator {
+public class GameCreator{
 
-	public static GameInstace getNewGame(GameCreationEvent event) {
+
+	public GameInstace createGame(GameCreationEvent event) {
 		GameInstace game = new GameInstace();
-
 		if (event.isLocal()) {
 			game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() + ".xml")).read());
 			game.addController(new Controller(game.getPlayer(1), KeySet.WASD));
@@ -52,4 +52,5 @@ public class GameCreator {
 		}
 		return game;
 	}
+
 }

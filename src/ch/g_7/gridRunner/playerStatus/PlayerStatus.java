@@ -25,7 +25,8 @@ public class PlayerStatus implements Serializable{
 		return position;
 	}
 
-	public boolean hasMistaces() {
-		return image == null || position == null;
+	public boolean isValid() {
+		return image != null && position != null;
 	}
+
 }
