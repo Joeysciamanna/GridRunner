@@ -40,7 +40,7 @@ public class GameRunner {
 		ExecutorService thread = Executors.newSingleThreadExecutor();
 		Future<OnlineGameInstance> gameInstance = thread.submit(new Callable<OnlineGameInstance>() {
 			@Override
-			public OnlineGameInstance call() throws Exception {
+			public OnlineGameInstance call() throws Exception { 
 				GameAgent gameAgent = ServerConnectionEstablisher.getGameAgent();
 				ClientId id = LocalClientId.getClientId();
 				
