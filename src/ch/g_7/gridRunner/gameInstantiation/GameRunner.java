@@ -1,8 +1,13 @@
 package ch.g_7.gridRunner.gameInstantiation;
 
 import java.io.File;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import javax.swing.JPanel;
+
 import ch.g_7.gridEngine.stream.MapReader;
 import ch.g_7.gridRunner.connection.ServerConnectionEstablisher;
 import ch.g_7.gridRunner.controller.Controller;
@@ -15,23 +20,31 @@ import ch.g_7.gridRunner.playerStatus.PlayerStatusSender;
 import ch.g_7.gridRunner.server.game.GameAgent;
 import ch.g_7.gridRunner.server.gameCreation.OnlineGameInstance;
 
-public class GameCreator{
+public class GameRunner {
 
+	private JPanel gamePanel;
+	
+	
+	public void startNewGame(GameCreationEvent event) {
+		
+	}
+	
+	
+	private GameInstace getNewLocalGame() {
+		
+		
+	}
+	
 
-	public GameInstace createGame(GameCreationEvent event) {
-		GameInstace game = new GameInstace();
-		if (event.isLocal()) {
-			game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() + ".xml")).read());
-			game.addController(new Controller(game.getPlayer(1), KeySet.WASD));
-			game.addController(new Controller(game.getPlayer(2), KeySet.ARROW));
-		} else {
-			OnlineGameInstance onlineGameInstance = null;
-			try {
+	private GameInstace getNewOnlineGame() {
+		ExecutorService thread = Executors.newSingleThreadExecutor();
+		Future<OnlineGameInstance> gameInstance = thread.submit(new Callable<OnlineGameInstance>() {
+			@Override
+			public OnlineGameInstance call() throws Exception { 
+				GameAgent gameAgent = ServerConnectionEstablisher.getGameAgent();
 				ClientId id = LocalClientId.getClientId();
 				
-				GameAgent gameAgent = ServerConnectionEstablisher.getGameAgent();
-				
-				onlineGameInstance = gameAgent.joinGameSession(id);
+				OnlineGameInstance onlineGameInstance = gameAgent.joinGameSession(id);
 				while (onlineGameInstance == null) {
 					onlineGameInstance = gameAgent.joinGameSession(id);
 				}
@@ -45,12 +58,13 @@ public class GameCreator{
 				Player villan = game.getPlayer(onlineGameInstance.getVillanNr(id));
 				villan.setCleintId(onlineGameInstance.geVillanId(id));
 				game.addPlayerStatusWorker(new PlayerStatusApplier(villan, ServerConnectionEstablisher.getPlayerStatusAgent()));
-				
-			} catch (RemoteException | NotBoundException e) {
-				e.printStackTrace();
+				return null;
 			}
-		}
-		return game;
+		});
 	}
-
+	
+	
+	public void setPanel(JPanel panel) {
+		gamePanel = panel;
+	}
 }
