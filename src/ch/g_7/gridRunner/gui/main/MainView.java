@@ -14,9 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch.g_7.gridEngine.helper.Lambda;
 import ch.g_7.gridRunner.gameInstantiation.GameCreationEvent;
 import ch.g_7.gridRunner.gameInstantiation.GameCreator;
 import ch.g_7.gridRunner.gameInstantiation.GameInstace;
+import ch.g_7.gridRunner.gameInstantiation.GameRunner;
 import ch.g_7.gridRunner.resources.Image;
 
 public class MainView extends View<JLabel> {
@@ -42,17 +44,20 @@ public class MainView extends View<JLabel> {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setLoading(true);
-				GameCreator creator = new GameCreator();
-				creator.createGame(new GameCreationEvent(false,"map1"));
-				GameInstace game = creator.getGame();
-				while (game == null) {
-					game = creator.getGame();
-					
-				}
-				
 				GameScreen screen = new GameScreen();
-				screen.start(game);
-				Window.getInstance().setScreen(screen);
+				
+				GameRunner gameRunner = new GameRunner();
+				gameRunner.onActive(new Lambda<Void, GameRunner>() {
+					@Override
+					public Void apply(GameRunner arg0) {
+						Window.getInstance().setScreen(screen);
+						Window.getInstance().addKeyListener(arg0.getGame().getController1());
+						Window.getInstance().addKeyListener(arg0.getGame().getController2());
+						return null;
+					}
+				});
+				gameRunner.setPanel(screen.getPanel());
+				gameRunner.startNewGame(new GameCreationEvent(false,"map1"));
 			}
 		});
 		panel.add(startGame);
