@@ -51,8 +51,7 @@ public class GridRunner {
 			@Override
 			public Void apply(AsyncGameStarter o) {
 				FieldGrid grid = o.getGame().getGrid();
-				Dimension gridSize = Calculator.calcSize(grid.getMapSizeInFields(), grid.getFieldSize());
-				window.setSize(new Dimension(gridSize.width+16, gridSize.height + grid.getFieldSize().height+39));
+				window.setSize(new Dimension(grid.getPanel().getWidth()+16, grid.getPanel().getWidth() + grid.getFieldSize().height+39));
 				return null;
 			}
 		});
