@@ -1,6 +1,7 @@
 package ch.g_7.gridRunner.gui.home;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -16,7 +17,8 @@ public class HomeMenue implements PanelWrapper<JPanel>{
 	private HomeMenue() {
 		this.panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(300,700);
+		panel.setSize(300,800);
+		panel.setPreferredSize(new Dimension(700,700));
 		panel.setBackground(Color.white);
 	}
 	
@@ -26,7 +28,7 @@ public class HomeMenue implements PanelWrapper<JPanel>{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Window.switchMainPanel(switchingPanel);
+				Window.getInstance().switchMainPanel(switchingPanel);
 			}
 		});
 		button.setLocation(0, panel.getComponentCount()*50);

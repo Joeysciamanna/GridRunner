@@ -1,6 +1,7 @@
 package ch.g_7.gridRunner.gui.home;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
@@ -14,7 +15,8 @@ public class ConfigPane implements PanelWrapper<JPanel>{
 	private ConfigPane() {
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(700,700);
+		panel.setSize(700,800);
+		panel.setPreferredSize(new Dimension(700, 700));
 		panel.setBackground(Color.yellow);
 	}
 	

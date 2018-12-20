@@ -1,31 +1,35 @@
 package ch.g_7.gridRunner.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Window {
 
-	private static JFrame jFrame;
+	private JFrame jFrame;
+	private static Window instance;
 	
-	public static void init() {
+	private Window() {
 		jFrame = new JFrame("GridRunner");
 		jFrame.setLayout(null);
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setVisible(true);
 	}
 
-	public static void setScreen(JPanel panel) {
-		clear();
-		panel.setLocation(0, 0);
-		jFrame.setSize(panel.getWidth()+16, panel.getHeight()+39);
+	public void setScreen(JPanel panel) {
+//		clear();
+		//jFrame.setSize(panel.getWidth()+16, panel.getHeight()+39);
+//		panel.setLocation(0, 0);
 		jFrame.add(panel);
 	}
 
-	public static void switchMainPanel(JPanel mainPanel) {
+	public void switchMainPanel(JPanel mainPanel) {
 		setScreen((JPanel) jFrame.getComponentAt(0, 0), mainPanel);
 	}
 	
-	public static void setScreen(JPanel menue, JPanel mainPanel) {
+	public void setScreen(JPanel menue, JPanel mainPanel) {
 		clear();
 		menue.setLocation(0, 0);
 		mainPanel.setLocation(menue.getWidth(),0);
@@ -34,8 +38,43 @@ public class Window {
 		jFrame.add(mainPanel);
 	}
 	
-	private static void clear() {
-		jFrame.removeAll();
+	private void clear() {
+		if(jFrame.getComponentCount()>0) {
+			jFrame.removeAll();	
+		}
 	}
 	
+	public void update() {
+		jFrame.repaint();
+	}
+	
+	public void show() {
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setVisible(true);
+	}
+	
+	public static Window getInstance() {
+		if(instance==null) {
+			instance = new Window();
+		}
+		return instance;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

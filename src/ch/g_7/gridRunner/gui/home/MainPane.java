@@ -1,6 +1,7 @@
 package ch.g_7.gridRunner.gui.home;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
@@ -14,8 +15,8 @@ public class MainPane implements PanelWrapper<JPanel>{
 	private MainPane() {
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(700,700);
-		panel.setBackground(Color.DARK_GRAY);
+		panel.setSize(700,800);
+		panel.setBackground(Color.ORANGE);
 	}
 	
 	@Override
