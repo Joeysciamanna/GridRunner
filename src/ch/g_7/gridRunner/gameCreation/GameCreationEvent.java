@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.gameInstantiation;
+package ch.g_7.gridRunner.gameCreation;
 
 import java.io.Serializable;
 
@@ -8,8 +8,6 @@ public class GameCreationEvent implements Serializable{
 	
 	private boolean local;
 	private String mapName;
-	
-	public GameCreationEvent() {}
 	
 	public GameCreationEvent(boolean local,String mapName) {
 		this.local = local;

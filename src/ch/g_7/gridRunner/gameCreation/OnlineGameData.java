@@ -1,10 +1,10 @@
-package ch.g_7.gridRunner.server.gameCreation;
+package ch.g_7.gridRunner.gameCreation;
 
 import java.io.Serializable;
 
 import ch.g_7.gridRunner.identification.ClientId;
 
-public class OnlineGameInstance implements Serializable{
+public class OnlineGameData implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -12,7 +12,7 @@ public class OnlineGameInstance implements Serializable{
 	private ClientId client1;
 	private ClientId client2;
 	
-	public OnlineGameInstance(String map,ClientId client1,ClientId client2) {
+	public OnlineGameData(String map,ClientId client1,ClientId client2) {
 		this.map = map;
 		this.client1 = client1;
 		this.client2 = client2;

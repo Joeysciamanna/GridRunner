@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.gameInstantiation;
+package ch.g_7.gridRunner.gameCreation;
 
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
@@ -13,6 +13,7 @@ public class GameInstace {
 	private Controller controller2;
 	private PlayerStatusWorker worker1;
 	private PlayerStatusWorker worker2;
+	private boolean activated;
 	
 	public void setGrid(FieldGrid grid) {
 		this.grid = grid;
@@ -50,22 +51,25 @@ public class GameInstace {
 		return controller2;
 	}
 	
-	public void activateControllers() {
-		if (controller1 != null) {
-			Thread t = new Thread(controller1);
-			t.start();
-		}
-		if (controller2 != null) {
-			Thread t = new Thread(controller2);
-			t.start();
-		}
-		if (worker1 != null) {
-			Thread t = new Thread(worker1);
-			t.start();
-		}
-		if (worker2 != null) {
-			Thread t = new Thread(worker2);
-			t.start();
+	public void activate() {
+		if(!activated) {
+			if (controller1 != null) {
+				Thread t = new Thread(controller1);
+				t.start();
+			}
+			if (controller2 != null) {
+				Thread t = new Thread(controller2);
+				t.start();
+			}
+			if (worker1 != null) {
+				Thread t = new Thread(worker1);
+				t.start();
+			}
+			if (worker2 != null) {
+				Thread t = new Thread(worker2);
+				t.start();
+			}
+			activated = true;
 		}
 	}
 	

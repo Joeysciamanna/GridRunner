@@ -8,13 +8,18 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCreationRegister;
 import ch.g_7.gridEngine.helper.Calculator;
-import ch.g_7.gridRunner.fields.creation.GridRunnerFieldFactory;
-import ch.g_7.gridRunner.gameInstantiation.GameCreationEvent;
-import ch.g_7.gridRunner.gameInstantiation.GameCreator;
-import ch.g_7.gridRunner.gameInstantiation.GameInstace;
+import ch.g_7.gridEngine.helper.Lambda;
+import ch.g_7.gridRunner.fieldCreation.GridRunnerFieldFactory;
+import ch.g_7.gridRunner.gameCreation.GameCreationEvent;
+import ch.g_7.gridRunner.gameCreation.GameCreator;
+import ch.g_7.gridRunner.gameCreation.GameCreatorProducer;
+import ch.g_7.gridRunner.gameCreation.GameInstace;
+import ch.g_7.gridRunner.helper.AsyncGameStarter;
 import ch.g_7.gridRunner.inventory.Inventory;
 
 public class GridRunner {
@@ -26,28 +31,31 @@ public class GridRunner {
 		JFrame window = new JFrame("Grid Runner");
 		window.getContentPane().setLayout(null);
 		
-		GameCreator creator = new GameCreator();
-		creator.createGame(new GameCreationEvent(true,"map1"));
-		GameInstace game = creator.getGame();
-		while (game == null) {
-			game = creator.getGame();
-		}
+		JPanel gameContainer = new JPanel();
+		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(false,"map1")));
 		
-		FieldGrid grid = game.getGrid();
-		grid.getPanel().setLocation(new Point(0, 0));
-		window.add(grid.getPanel());
+
 		
-		Dimension gridSize = Calculator.calcSize(grid.getMapSizeInFields(), grid.getFieldSize());
+		gameContainer.setLocation(new Point(0, 0));
+		window.add(gameContainer);
+		window.setSize(gameContainer.getSize());
 		
-		Inventory inventory = new Inventory(new Dimension(gridSize.width, grid.getFieldSize().height));
-		inventory.getPanel().setLocation(new Point(0, gridSize.height));
-		window.add(inventory.getPanel());
+
 	
-		window.addKeyListener(game.getController1());
-		window.addKeyListener(game.getController2());
+
 		
-		game.activateControllers();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+		
+		gameStarter.onGameStart(new Lambda<Void, AsyncGameStarter>() {
+			@Override
+			public Void apply(AsyncGameStarter o) {
+				FieldGrid grid = o.getGame().getGrid();
+				Dimension gridSize = Calculator.calcSize(grid.getMapSizeInFields(), grid.getFieldSize());
+				window.setSize(new Dimension(gridSize.width+16, gridSize.height + grid.getFieldSize().height+39));
+				return null;
+			}
+		});
+		gameStarter.startStarting();
 	}
 }

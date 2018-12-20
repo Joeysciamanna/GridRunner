@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.fields.creation;
+package ch.g_7.gridRunner.fieldCreation;
 
 import ch.g_7.gridEngine.field.Field;
 import ch.g_7.gridEngine.field.building.DefaultFieldFactory;
@@ -6,8 +6,6 @@ import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.fields.Grass;
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.fields.Rock;
-import ch.g_7.gridRunner.identification.ClientId;
-import ch.g_7.gridRunner.identification.LocalClientId;
 
 public class GridRunnerFieldFactory extends DefaultFieldFactory{
 

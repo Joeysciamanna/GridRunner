@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import ch.g_7.gridRunner.gameCreation.OnlineGameData;
 import ch.g_7.gridRunner.identification.ClientId;
-import ch.g_7.gridRunner.server.gameCreation.OnlineGameInstance;
 
 public interface GameAgent extends Remote, Serializable{
 
-	public OnlineGameInstance joinGameSession(ClientId id) throws RemoteException;
+	public OnlineGameData joinGameSession(ClientId id) throws RemoteException;
 	
 }

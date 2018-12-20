@@ -7,7 +7,7 @@ import java.util.Random;
 import ch.g_7.gridRunner.connection.ServerConnectionEstablisher;
 import ch.g_7.gridRunner.server.id.ClientIdAgent;
 
-public class LocalClientId {
+public class ClientIdProvider {
 
 	private static ClientId clientId;
 	
