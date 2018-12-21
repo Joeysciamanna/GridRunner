@@ -28,7 +28,7 @@ public class HomeMenue implements PanelWrapper<JPanel>{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Window.getInstance().switchMainPanel(switchingPanel);
+				Window.switchMainPanel(switchingPanel);
 			}
 		});
 		button.setLocation(0, panel.getComponentCount()*50);

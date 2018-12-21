@@ -1,5 +1,6 @@
 package ch.g_7.gridRunner.gui;
 
+import javax.naming.InitialContext;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -15,21 +16,17 @@ public class Test {
 	public static Window window;
 	
 	public static void main(String[] args) {
-		window = Window.getInstance();
-		window.show();
-//		HomeMenue homeMenue = HomeMenue.getInstance();
+		init();
+		HomeMenue homeMenue = HomeMenue.getInstance();
 		MainPane mainPane = MainPane.getInstance();
-//		ConfigPane configPane = ConfigPane.getInstance();
-//		homeMenue.addButton("Home", mainPane.getPanel());
-//		homeMenue.addButton("Config", configPane.getPanel());
+		ConfigPane configPane = ConfigPane.getInstance();
+		homeMenue.addButton("Home", mainPane.getPanel());
+		homeMenue.addButton("Config", configPane.getPanel());
 		
 		
-//		setScreen(homeMenue.getPanel(),mainPane.getPanel());
-		JPanel test = new JPanel();
-		test.setBackground(Color.green);
-		test.setSize(100,100);
-		
-		window.setScreen(test);
+		setScreen(homeMenue.getPanel(),mainPane.getPanel());
+		show();
+
 		
 		
 //		JFrame frame = new JFrame("");

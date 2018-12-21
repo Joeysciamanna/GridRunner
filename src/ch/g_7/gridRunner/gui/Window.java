@@ -10,55 +10,50 @@ import javax.swing.JPanel;
 
 public class Window {
 
-	private JFrame jFrame;
-	private static Window instance;
+	private static JFrame jFrame;
 	
-	private Window() {
+	public static void init() {
 		jFrame = new JFrame("GridRunner");
 		jFrame.setLayout(null);
 	}
-
-	public void setScreen(JPanel panel) {
-//		clear();
-		//jFrame.setSize(panel.getWidth()+16, panel.getHeight()+39);
-//		panel.setLocation(0, 0);
-		jFrame.add(panel);
+	
+	public static void switchMainPanel(JPanel mainPanel) {
+		setScreen((JPanel) jFrame.getContentPane().getComponentAt(0, 0), mainPanel);
 	}
 
-	public void switchMainPanel(JPanel mainPanel) {
-		setScreen((JPanel) jFrame.getComponentAt(0, 0), mainPanel);
+	public static void setScreen(JPanel panel) {
+		clear();
+		jFrame.setSize(panel.getWidth()+16, panel.getHeight()+39);
+		panel.setLocation(0, 0);
+		jFrame.getContentPane().add(panel);
+		update();
 	}
 	
-	public void setScreen(JPanel menue, JPanel mainPanel) {
+	public static void setScreen(JPanel menue, JPanel mainPanel) {
 		clear();
 		menue.setLocation(0, 0);
 		mainPanel.setLocation(menue.getWidth(),0);
 		jFrame.setSize(menue.getWidth()+mainPanel.getWidth()+16, (mainPanel.getHeight()>menue.getHeight()?mainPanel.getHeight():menue.getHeight())+39);
-		jFrame.add(menue);
-		jFrame.add(mainPanel);
+		jFrame.getContentPane().add(menue);
+		jFrame.getContentPane().add(mainPanel);
+		update();
 	}
 	
-	private void clear() {
-		if(jFrame.getComponentCount()>0) {
-			jFrame.removeAll();	
+	private static void clear() {
+		if(jFrame.getContentPane().getComponentCount()>0) {
+			jFrame.getContentPane().removeAll();	
 		}
 	}
 	
-	public void update() {
+	public static void update() {
 		jFrame.repaint();
 	}
 	
-	public void show() {
+	public static void show() {
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setVisible(true);
 	}
 	
-	public static Window getInstance() {
-		if(instance==null) {
-			instance = new Window();
-		}
-		return instance;
-	}
 }
 
 
