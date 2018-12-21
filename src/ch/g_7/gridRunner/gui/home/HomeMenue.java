@@ -17,7 +17,7 @@ public class HomeMenue implements PanelWrapper<JPanel>{
 	private HomeMenue() {
 		this.panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(300,800);
+		panel.setSize(800,800);
 		panel.setPreferredSize(new Dimension(700,700));
 		panel.setBackground(Color.white);
 	}

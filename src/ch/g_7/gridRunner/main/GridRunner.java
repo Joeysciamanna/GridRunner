@@ -32,7 +32,7 @@ public class GridRunner {
 		window.getContentPane().setLayout(null);
 		
 		JPanel gameContainer = new JPanel();
-		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(false,"map1")));
+		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"map1")));
 		
 
 		

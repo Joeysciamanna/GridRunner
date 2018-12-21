@@ -15,8 +15,9 @@ public class MainPane implements PanelWrapper<JPanel>{
 	private MainPane() {
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(700,800);
+		panel.setSize(800,800);
 		panel.setBackground(Color.ORANGE);
+		
 	}
 	
 	@Override
