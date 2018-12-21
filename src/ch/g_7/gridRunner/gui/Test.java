@@ -1,9 +1,5 @@
 package ch.g_7.gridRunner.gui;
 
-import javax.naming.InitialContext;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import ch.g_7.gridRunner.gui.home.ConfigPane;
 import ch.g_7.gridRunner.gui.home.HomeMenue;
 import ch.g_7.gridRunner.gui.home.MainPane;
