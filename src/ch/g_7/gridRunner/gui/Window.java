@@ -8,12 +8,15 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ch.g_7.gridRunner.controller.Controller;
+
 public class Window {
 
 	private static JFrame jFrame;
 	
 	public static void init() {
 		jFrame = new JFrame("GridRunner");
+		
 		jFrame.setLayout(null);
 	}
 	
@@ -31,6 +34,10 @@ public class Window {
 	
 	public static void setScreen(JPanel menue, JPanel mainPanel) {
 		clear();
+		mainPanel.setFocusable(false);
+		mainPanel.setFocusable(true);
+		mainPanel.requestFocus();
+		mainPanel.requestFocusInWindow();
 		menue.setLocation(0, 0);
 		mainPanel.setLocation(menue.getWidth(),0);
 		jFrame.setSize(menue.getWidth()+mainPanel.getWidth()+16, (mainPanel.getHeight()>menue.getHeight()?mainPanel.getHeight():menue.getHeight())+39);
@@ -52,6 +59,10 @@ public class Window {
 	public static void show() {
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setVisible(true);
+	}
+	
+	public static void addController(Controller controller) {
+		jFrame.addKeyListener(controller);
 	}
 	
 }

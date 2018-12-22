@@ -441,12 +441,14 @@
 	</stack>
 	<stack xPos="21" yPos="5">
 		<field code="GRASS:-" />
+		<field code="PLAYER:1" />
 	</stack>
 	<stack xPos="22" yPos="5">
 		<field code="GRASS:-" />
 	</stack>
 	<stack xPos="23" yPos="5">
 		<field code="GRASS:-" />
+		<field code="PLAYER:2" />
 	</stack>
 	<stack xPos="24" yPos="5">
 		<field code="ROCK:-" />

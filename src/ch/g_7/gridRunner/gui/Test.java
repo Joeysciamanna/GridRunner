@@ -1,5 +1,7 @@
 package ch.g_7.gridRunner.gui;
 
+import ch.g_7.gridEngine.field.building.FieldCreationRegister;
+import ch.g_7.gridRunner.fieldCreation.GridRunnerFieldFactory;
 import ch.g_7.gridRunner.gui.home.ConfigPane;
 import ch.g_7.gridRunner.gui.home.HomeMenue;
 import ch.g_7.gridRunner.gui.home.MainPane;
@@ -12,6 +14,7 @@ public class Test {
 	public static Window window;
 	
 	public static void main(String[] args) {
+		FieldCreationRegister.setDefaultFactory(new GridRunnerFieldFactory());
 		init();
 		HomeMenue homeMenue = HomeMenue.getInstance();
 		MainPane mainPane = MainPane.getInstance();

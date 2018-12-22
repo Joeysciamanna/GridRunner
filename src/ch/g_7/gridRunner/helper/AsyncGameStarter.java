@@ -13,6 +13,7 @@ import ch.g_7.gridEngine.helper.Calculator;
 import ch.g_7.gridEngine.helper.Lambda;
 import ch.g_7.gridRunner.gameCreation.GameCreator;
 import ch.g_7.gridRunner.gameCreation.GameInstace;
+import ch.g_7.gridRunner.gui.Window;
 import ch.g_7.gridRunner.inventory.Inventory;
 
 public class AsyncGameStarter extends TimerTask{
@@ -54,8 +55,6 @@ public class AsyncGameStarter extends TimerTask{
 		Inventory inventory = new Inventory(new Dimension(gridSize.width, grid.getFieldSize().height));
 		inventory.getPanel().setLocation(new Point(0, gridSize.height));
 		panel.add(inventory.getPanel());
-		panel.setFocusable(true);
-		panel.requestFocus();
 		panel.addKeyListener(game.getController1());
 		panel.addKeyListener(game.getController2());
 		panel.setSize(new Dimension(gridSize.width, gridSize.height + grid.getFieldSize().height));

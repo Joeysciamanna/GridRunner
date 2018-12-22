@@ -2,10 +2,12 @@ package ch.g_7.gridRunner.gui.home;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.File;
 
 import javax.swing.JPanel;
 
 import ch.g_7.gridEngine.base.PanelWrapper;
+import ch.g_7.gridEngine.stream.MapReader;
 
 public class ConfigPane implements PanelWrapper<JPanel>{
 
@@ -15,8 +17,7 @@ public class ConfigPane implements PanelWrapper<JPanel>{
 	private ConfigPane() {
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(700,800);
-		panel.setPreferredSize(new Dimension(700, 700));
+		panel.setSize(800,800);
 		panel.setBackground(Color.yellow);
 	}
 	
