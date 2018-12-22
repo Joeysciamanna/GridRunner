@@ -448,7 +448,6 @@
 	</stack>
 	<stack xPos="23" yPos="5">
 		<field code="GRASS:-" />
-		<field code="PLAYER:2" />
 	</stack>
 	<stack xPos="24" yPos="5">
 		<field code="ROCK:-" />

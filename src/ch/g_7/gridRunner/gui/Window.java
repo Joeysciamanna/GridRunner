@@ -16,7 +16,7 @@ public class Window {
 	
 	public static void init() {
 		jFrame = new JFrame("GridRunner");
-		
+		jFrame.setFocusable(true);
 		jFrame.setLayout(null);
 	}
 	
@@ -34,10 +34,6 @@ public class Window {
 	
 	public static void setScreen(JPanel menue, JPanel mainPanel) {
 		clear();
-		mainPanel.setFocusable(false);
-		mainPanel.setFocusable(true);
-		mainPanel.requestFocus();
-		mainPanel.requestFocusInWindow();
 		menue.setLocation(0, 0);
 		mainPanel.setLocation(menue.getWidth(),0);
 		jFrame.setSize(menue.getWidth()+mainPanel.getWidth()+16, (mainPanel.getHeight()>menue.getHeight()?mainPanel.getHeight():menue.getHeight())+39);
