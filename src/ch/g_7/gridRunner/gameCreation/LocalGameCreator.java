@@ -4,6 +4,7 @@ import java.io.File;
 
 import ch.g_7.gridEngine.stream.MapReader;
 import ch.g_7.gridRunner.controller.Controller;
+import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.helper.KeySet;
 
 public class LocalGameCreator extends GameCreator{
@@ -17,8 +18,9 @@ public class LocalGameCreator extends GameCreator{
 	public void create() {
 		GameInstace game = new GameInstace();
 		game.setGrid(new MapReader(new File("resources/maps/" + event.getMapName() + ".xml")).read());
-		game.addController(new Controller(game.getPlayer(1), KeySet.WASD));
-		game.addController(new Controller(game.getPlayer(2), KeySet.ARROW));
+		for (Player p : game.getPlayers()) {
+			game.addController(new Controller(p, KeySet.getKeySet(p.getPlayerNr())));
+		}
 		this.game = game;
 	}
 }

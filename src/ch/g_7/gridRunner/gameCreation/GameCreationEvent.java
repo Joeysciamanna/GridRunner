@@ -7,11 +7,13 @@ public class GameCreationEvent implements Serializable{
 	private static final long serialVersionUID = -932920361483957465L;
 	
 	private boolean local;
+	private int playerCount;
 	private String mapName;
 	
-	public GameCreationEvent(boolean local,String mapName) {
+	public GameCreationEvent(boolean local,String mapName, int playerCount) {
 		this.local = local;
 		this.mapName = mapName;
+		this.playerCount = playerCount;
 	}
 	
 	public boolean isLocal() {
@@ -20,5 +22,9 @@ public class GameCreationEvent implements Serializable{
 	
 	public String getMapName() {
 		return mapName;
+	}
+	
+	public int getPlayerCount() {
+		return playerCount;
 	}
 }

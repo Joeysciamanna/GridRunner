@@ -31,4 +31,12 @@ public enum KeySet {
 	public int getRight() {
 		return right;
 	}
+	public static KeySet getKeySet(int n) {
+		switch (n) {
+		case 2:
+			return ARROW; 
+		default:
+			return WASD;
+		}
+	}
 }

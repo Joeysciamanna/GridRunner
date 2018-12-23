@@ -55,8 +55,6 @@ public class AsyncGameStarter extends TimerTask{
 		Inventory inventory = new Inventory(new Dimension(gridSize.width, grid.getFieldSize().height));
 		inventory.getPanel().setLocation(new Point(0, gridSize.height));
 		panel.add(inventory.getPanel());
-		Window.addController(game.getController1());
-		Window.addController(game.getController2());
 		panel.setSize(new Dimension(gridSize.width, gridSize.height + grid.getFieldSize().height));
 		game.activate();
 		

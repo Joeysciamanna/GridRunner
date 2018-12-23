@@ -37,6 +37,11 @@ public class OnlineGameCreator extends GameCreator{
 			
 			game.setGrid(new MapReader(new File("resources/maps/" + onlineGameInstance.getMap() + ".xml")).read());
 			
+			for(Player p : game.getPlayers()) {
+				if(p.getPlayerNr() == onlineGameInstance.getPlayerNr(id)) {
+					p.setCleintId(id);
+				}else
+			}
 			Player player = game.getPlayer(onlineGameInstance.getPlayerNr(id));
 			player.setCleintId(id);
 			game.addPlayerStatusWorker(new PlayerStatusSender(player, ServerConnectionEstablisher.getPlayerStatusAgent()));
