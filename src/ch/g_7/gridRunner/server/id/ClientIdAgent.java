@@ -8,5 +8,5 @@ import ch.g_7.gridRunner.identification.ClientId;
 
 public interface ClientIdAgent extends Remote, Serializable{
 
-	public ClientId newClientId() throws RemoteException;
+	public long newClientId() throws RemoteException;
 }

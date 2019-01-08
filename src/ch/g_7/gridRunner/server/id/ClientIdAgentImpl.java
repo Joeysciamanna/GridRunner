@@ -5,8 +5,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Random;
 
-import ch.g_7.gridRunner.identification.ClientId;
-
 public class ClientIdAgentImpl extends UnicastRemoteObject implements ClientIdAgent{
 
 	private static final long serialVersionUID = 1L;
@@ -18,14 +16,14 @@ public class ClientIdAgentImpl extends UnicastRemoteObject implements ClientIdAg
 	}
 
 	@Override
-	public ClientId newClientId() throws RemoteException {
+	public long newClientId() throws RemoteException {
 		int id = new Random().nextInt();
 		while(ids.contains(id)) {
 			id = new Random().nextInt();
 		}
 		ids.add(id);
 		System.err.println("New Client Id: " + id);
-		return new ClientId(id);
+		return id;
 	}
 
 }

@@ -8,20 +8,25 @@ public class GameCreationEvent implements Serializable{
 	
 	private boolean local;
 	private String mapName;
+	private int playerCount;
+	private long creatorsId;
 	
-	public GameCreationEvent(boolean local,String mapName) {
+	public GameCreationEvent(boolean local,String mapName,int playerCount) {
 		this.local = local;
 		this.mapName = mapName;
-
+		this.playerCount = playerCount;
 	}
 	
 	public boolean isLocal() {
 		return local;
 	}
-	
+
 	public String getMapName() {
 		return mapName;
 	}
-	
+
+	public int getPlayerCount() {
+		return playerCount;
+	}
 
 }

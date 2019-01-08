@@ -27,12 +27,12 @@ public class OnlineGameCreator extends GameCreator{
 			GameInstace game = new GameInstace();
 			
 			OnlineGameData onlineGameInstance = null;
-			ClientId id = ClientIdProvider.getClientId();
+			long id = ClientIdProvider.getClientId();
 			GameAgent gameAgent = ServerConnectionEstablisher.getGameAgent();
 			
-			onlineGameInstance = gameAgent.joinGameSession(id);
+			onlineGameInstance = gameAgent.joinGameSession(event);
 			while (onlineGameInstance == null) {
-				onlineGameInstance = gameAgent.joinGameSession(id);
+				onlineGameInstance = gameAgent.joinGameSession(event);
 			}
 			
 			game.setGrid(new MapReader(new File("resources/maps/" + onlineGameInstance.getMap() + ".xml")).read());
