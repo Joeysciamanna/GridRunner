@@ -7,6 +7,7 @@ import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fields.Player;
 import ch.g_7.gridRunner.gui.Window;
+import ch.g_7.gridRunner.main.GridRunner;
 import ch.g_7.gridRunner.playerStatus.PlayerStatusWorker;
 
 public class GameInstace {
@@ -49,7 +50,7 @@ public class GameInstace {
 		return players;
 	}
 	
-	public Player getPlayedr(int n) {
+	public Player getPlayer(int n) {
 		return (Player) grid.getFieldWhere(new FieldCode("PLAYER",String.valueOf(n)));
 	}
 	
@@ -68,12 +69,12 @@ public class GameInstace {
 	public void activate() {
 		if(!activated) {
 			if (controller1 != null) {
-				Window.addController(controller1);
+				GridRunner.addController(controller1);
 				Thread t = new Thread(controller1);
 				t.start();
 			}
 			if (controller2 != null) {
-				Window.addController(controller2);
+				GridRunner.addController(controller2);
 				Thread t = new Thread(controller2);
 				t.start();
 			}

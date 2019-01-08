@@ -20,7 +20,7 @@ public class MainPane implements PanelWrapper<JPanel>{
 	
 	private MainPane() {
 		panel = new JPanel();
-		AsyncGameStarter gameStarter = new AsyncGameStarter(panel,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"homeMap",1)));
+		AsyncGameStarter gameStarter = new AsyncGameStarter(panel,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"homeMap")));
 		gameStarter.onGameStart(new Lambda<Void, AsyncGameStarter>() {
 			@Override
 			public Void apply(AsyncGameStarter o) {

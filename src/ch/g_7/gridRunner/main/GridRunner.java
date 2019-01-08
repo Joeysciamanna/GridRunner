@@ -13,6 +13,7 @@ import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCreationRegister;
 import ch.g_7.gridEngine.helper.Calculator;
 import ch.g_7.gridEngine.helper.Lambda;
+import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fieldCreation.GridRunnerFieldFactory;
 import ch.g_7.gridRunner.gameCreation.GameCreationEvent;
 import ch.g_7.gridRunner.gameCreation.GameCreator;
@@ -23,15 +24,18 @@ import ch.g_7.gridRunner.inventory.Inventory;
 
 public class GridRunner {
 
+	
+	public static JFrame window;
+	
 	public static void main(String[] args) {
 		
 		FieldCreationRegister.setDefaultFactory(new GridRunnerFieldFactory());
 		
-		JFrame window = new JFrame("Grid Runner");
+		window = new JFrame("Grid Runner");
 		window.getContentPane().setLayout(null);
 		
 		JPanel gameContainer = new JPanel();
-		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"map1")));
+		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(false,"map1")));
 		
 
 		
@@ -55,5 +59,9 @@ public class GridRunner {
 			}
 		});
 		gameStarter.startStarting();
+	}
+	
+	public static void addController(Controller controller) {
+		window.addKeyListener(controller);
 	}
 }

@@ -39,18 +39,25 @@ public class OnlineGameCreator extends GameCreator{
 			
 			for(Player p : game.getPlayers()) {
 				if(p.getPlayerNr() == onlineGameInstance.getPlayerNr(id)) {
+					System.out.println("Local Player: " + id.getId());
 					p.setCleintId(id);
-				}else
+					game.addPlayerStatusWorker(new PlayerStatusSender(p, ServerConnectionEstablisher.getPlayerStatusAgent()));
+					game.addController(new Controller(p, KeySet.WASD));
+				}else {
+					System.out.println("Remote Player: " + onlineGameInstance.getClientId(p.getPlayerNr()).getId());
+					p.setCleintId(onlineGameInstance.getClientId(p.getPlayerNr()));
+					game.addPlayerStatusWorker(new PlayerStatusApplier(p, ServerConnectionEstablisher.getPlayerStatusAgent()));
+				}
 			}
-			Player player = game.getPlayer(onlineGameInstance.getPlayerNr(id));
-			player.setCleintId(id);
-			game.addPlayerStatusWorker(new PlayerStatusSender(player, ServerConnectionEstablisher.getPlayerStatusAgent()));
-			game.addController(new Controller(player, KeySet.WASD));
-			
-			Player villan = game.getPlayer(onlineGameInstance.getVillanNr(id));
-			villan.setCleintId(onlineGameInstance.geVillanId(id));
-			game.addPlayerStatusWorker(new PlayerStatusApplier(villan, ServerConnectionEstablisher.getPlayerStatusAgent()));
 			this.game = game;
+//			Player player = game.getPlayer(onlineGameInstance.getPlayerNr(id));
+//			player.setCleintId(id);
+//			game.addPlayerStatusWorker(new PlayerStatusSender(player, ServerConnectionEstablisher.getPlayerStatusAgent()));
+//			game.addController(new Controller(player, KeySet.WASD));
+//			
+//			Player villan = game.getPlayer(onlineGameInstance.getVillanNr(id));
+//			villan.setCleintId(onlineGameInstance.geVillanId(id));
+//			game.addPlayerStatusWorker(new PlayerStatusApplier(villan, ServerConnectionEstablisher.getPlayerStatusAgent()));
 		} catch (RemoteException | NotBoundException e) {
 			e.printStackTrace();
 		}
