@@ -6,7 +6,6 @@ import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fields.Player;
-import ch.g_7.gridRunner.gui.Window;
 import ch.g_7.gridRunner.main.GridRunner;
 import ch.g_7.gridRunner.playerStatus.PlayerStatusWorker;
 
