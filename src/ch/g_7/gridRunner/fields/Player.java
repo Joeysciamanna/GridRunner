@@ -4,13 +4,12 @@ import java.awt.Dimension;
 import ch.g_7.gridEngine.base.Movable;
 import ch.g_7.gridEngine.core.FieldStack;
 import ch.g_7.gridEngine.field.building.FieldCode;
-import ch.g_7.gridRunner.identification.ClientId;
 import ch.g_7.gridRunner.playerStatus.PlayerStatus;
 import ch.g_7.gridRunner.resources.Image;
 
 public class Player extends BasicGridRunnerField implements Movable{
 
-	private ClientId cleintId;
+	private long cleintId;
 	private int playerNr;
 	
 	public Player(int player) {
@@ -47,7 +46,7 @@ public class Player extends BasicGridRunnerField implements Movable{
 		return new FieldCode("PLAYER",String.valueOf(playerNr));
 	}
 
-	public void setCleintId(ClientId cleintId) {
+	public void setCleintId(long cleintId) {
 		this.cleintId = cleintId;
 	}
 	
@@ -55,7 +54,7 @@ public class Player extends BasicGridRunnerField implements Movable{
 		return playerNr;
 	}
 	
-	public ClientId getCleintId() {
+	public long getCleintId() {
 		return cleintId;
 	}
 	

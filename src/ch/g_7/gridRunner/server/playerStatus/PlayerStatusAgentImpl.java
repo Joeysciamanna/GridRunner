@@ -5,13 +5,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.g_7.gridRunner.identification.ClientId;
 import ch.g_7.gridRunner.playerStatus.PlayerStatus;
 
 public class PlayerStatusAgentImpl extends UnicastRemoteObject implements PlayerStatusAgent{
 
 	private static final long serialVersionUID = 2027480092072051883L;
-	Map<Integer, PlayerStatus> playerStatuses = new HashMap<>();
+	Map<Long, PlayerStatus> playerStatuses = new HashMap<>();
 	
 	
 	public PlayerStatusAgentImpl() throws RemoteException {
@@ -19,13 +18,13 @@ public class PlayerStatusAgentImpl extends UnicastRemoteObject implements Player
 	}
 
 	@Override
-	public PlayerStatus getPlayerStatus(ClientId client) throws RemoteException {
-		return playerStatuses.get(client.getId());
+	public PlayerStatus getPlayerStatus(long id) throws RemoteException {
+		return playerStatuses.get(id);
 	}
 
 	@Override
-	public void setPlayerStatus(ClientId client, PlayerStatus status) throws RemoteException {
-		playerStatuses.put(client.getId(), status);
+	public void setPlayerStatus(long id, PlayerStatus status) throws RemoteException {
+		playerStatuses.put(id, status);
 	}
 
 }

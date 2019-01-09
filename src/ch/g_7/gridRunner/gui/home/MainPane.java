@@ -12,6 +12,7 @@ import ch.g_7.gridEngine.helper.Lambda;
 import ch.g_7.gridRunner.gameCreation.GameCreationEvent;
 import ch.g_7.gridRunner.gameCreation.GameCreatorProducer;
 import ch.g_7.gridRunner.helper.AsyncGameStarter;
+import ch.g_7.gridRunner.identification.ClientIdProvider;
 
 public class MainPane implements PanelWrapper<JPanel>{
 
@@ -20,7 +21,7 @@ public class MainPane implements PanelWrapper<JPanel>{
 	
 	private MainPane() {
 		panel = new JPanel();
-		AsyncGameStarter gameStarter = new AsyncGameStarter(panel,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"homeMap")));
+		AsyncGameStarter gameStarter = new AsyncGameStarter(panel,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"homeMap",1,ClientIdProvider.getClientId())));
 		gameStarter.onGameStart(new Lambda<Void, AsyncGameStarter>() {
 			@Override
 			public Void apply(AsyncGameStarter o) {

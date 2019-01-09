@@ -17,7 +17,7 @@ public class ClientIdProvider {
 			ClientIdAgent clientIdAgent = ServerConnectionEstablisher.getClientIdAgent();
 			id = clientIdAgent.newClientId();
 		} catch (RemoteException | NotBoundException e) {
-			e.printStackTrace();
+			System.err.println("Not able to connect to server and get a ClientId");
 		}
 		clientId = id;
 	}

@@ -18,4 +18,13 @@ public class LobbyProvider {
 		lobbies.add(newLobby);
 		return newLobby;
 	}
+	
+	public static Lobby getLobbyById(long lobbyId) {
+		for(Lobby lobby : lobbies) {
+			if(lobby.getLobbyId() == lobbyId) {
+				return lobby;
+			}
+		}
+		return null;
+	}
 }

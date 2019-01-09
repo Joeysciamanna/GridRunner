@@ -11,10 +11,11 @@ public class GameCreationEvent implements Serializable{
 	private int playerCount;
 	private long creatorsId;
 	
-	public GameCreationEvent(boolean local,String mapName,int playerCount) {
+	public GameCreationEvent(boolean local,String mapName,int playerCount,long creatorsId) {
 		this.local = local;
 		this.mapName = mapName;
 		this.playerCount = playerCount;
+		this.creatorsId = creatorsId;
 	}
 	
 	public boolean isLocal() {
@@ -27,6 +28,10 @@ public class GameCreationEvent implements Serializable{
 
 	public int getPlayerCount() {
 		return playerCount;
+	}
+	
+	public long getCreatorsId() {
+		return creatorsId;
 	}
 
 }

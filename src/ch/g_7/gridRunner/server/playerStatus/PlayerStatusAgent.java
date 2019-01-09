@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import ch.g_7.gridRunner.identification.ClientId;
 import ch.g_7.gridRunner.playerStatus.PlayerStatus;
 
 public interface PlayerStatusAgent extends Remote, Serializable{
 
-	public PlayerStatus getPlayerStatus(ClientId client) throws RemoteException;
+	public PlayerStatus getPlayerStatus(long id) throws RemoteException;
 	
-	public void setPlayerStatus(ClientId client,PlayerStatus status) throws RemoteException;
+	public void setPlayerStatus(long id,PlayerStatus status) throws RemoteException;
 }

@@ -8,6 +8,6 @@ import ch.g_7.gridRunner.gameCreation.OnlineGameData;
 
 public interface GameAgent extends Remote, Serializable{
 
-	public OnlineGameData joinGameLobby(GameCreationEvent id) throws RemoteException;
+	public long joinGameLobby(GameCreationEvent event) throws RemoteException;
 	
 }

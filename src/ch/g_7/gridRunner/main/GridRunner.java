@@ -20,6 +20,7 @@ import ch.g_7.gridRunner.gameCreation.GameCreator;
 import ch.g_7.gridRunner.gameCreation.GameCreatorProducer;
 import ch.g_7.gridRunner.gameCreation.GameInstace;
 import ch.g_7.gridRunner.helper.AsyncGameStarter;
+import ch.g_7.gridRunner.identification.ClientIdProvider;
 import ch.g_7.gridRunner.inventory.Inventory;
 
 public class GridRunner {
@@ -35,7 +36,7 @@ public class GridRunner {
 		window.getContentPane().setLayout(null);
 		
 		JPanel gameContainer = new JPanel();
-		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(false,"map1")));
+		AsyncGameStarter gameStarter = new AsyncGameStarter(gameContainer,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"map1",2,ClientIdProvider.getClientId())));
 		
 
 		
