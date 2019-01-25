@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import ch.g_7.gridRunner.gameCreation.GameCreationEvent;
-import ch.g_7.gridRunner.gameCreation.OnlineGameData;
 import ch.g_7.gridRunner.server.lobby.LobbyProvider;
 
 public class GameAgentImpl extends UnicastRemoteObject implements GameAgent {
@@ -15,9 +14,6 @@ public class GameAgentImpl extends UnicastRemoteObject implements GameAgent {
 		super();
 	}
 	
-	@Override
-	public synchronized long joinGameLobby(GameCreationEvent event) throws RemoteException {
-		return LobbyProvider.getLobbyFor(event).getLobbyId();
-	}
+	
 
 }

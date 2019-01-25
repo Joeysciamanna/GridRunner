@@ -9,7 +9,7 @@ public class ClientIdAgentImpl extends UnicastRemoteObject implements ClientIdAg
 
 	private static final long serialVersionUID = 1L;
 	
-	ArrayList<Integer> ids = new ArrayList<>();
+	ArrayList<Long> ids = new ArrayList<>();
 	
 	public ClientIdAgentImpl() throws RemoteException {
 		super();
@@ -17,9 +17,9 @@ public class ClientIdAgentImpl extends UnicastRemoteObject implements ClientIdAg
 
 	@Override
 	public long newClientId() throws RemoteException {
-		int id = new Random().nextInt();
+		long id = new Random().nextLong();
 		while(ids.contains(id)) {
-			id = new Random().nextInt();
+			id = new Random().nextLong();
 		}
 		ids.add(id);
 		System.err.println("New Client Id: " + id);

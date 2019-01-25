@@ -6,16 +6,13 @@ import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.fields.Player;
-import ch.g_7.gridRunner.main.GridRunner;
 import ch.g_7.gridRunner.playerStatus.PlayerStatusWorker;
 
 public class GameInstace {
 
 	private FieldGrid grid;
-	private Controller controller1;
-	private Controller controller2;
-	private PlayerStatusWorker worker1;
-	private PlayerStatusWorker worker2;
+	private ArrayList<Controller> controllers;
+	private ArrayList<PlayerStatusWorker> workers;
 	private boolean activated;
 	
 	public void setGrid(FieldGrid grid) {
@@ -23,19 +20,11 @@ public class GameInstace {
 	}
 	
 	public void addController(Controller controller) {
-		if(controller1 == null) {
-			controller1 = controller;
-		}else {
-			controller2 = controller;
-		}
+		controllers.add(controller);
 	}
 		
 	public void addPlayerStatusWorker(PlayerStatusWorker worker) {
-		if(worker1 == null) {
-			worker1 = worker;
-		}else {
-			worker2 = worker;
-		}
+		workers.add(worker);
 	}
 		
 	public ArrayList<Player> getPlayers() {
@@ -57,32 +46,19 @@ public class GameInstace {
 		return grid;
 	}
 
-	public Controller getController1() {
-		return controller1;
+	public Controller getController(int index) {
+		return controllers.get(index);
 	}
-	
-	public Controller getController2() {
-		return controller2;
-	}
+
 
 	public void activate() {
 		if(!activated) {
-			if (controller1 != null) {
-				GridRunner.addController(controller1);
-				Thread t = new Thread(controller1);
+			for (PlayerStatusWorker worker : workers) {
+				Thread t = new Thread(worker);
 				t.start();
 			}
-			if (controller2 != null) {
-				GridRunner.addController(controller2);
-				Thread t = new Thread(controller2);
-				t.start();
-			}
-			if (worker1 != null) {
-				Thread t = new Thread(worker1);
-				t.start();
-			}
-			if (worker2 != null) {
-				Thread t = new Thread(worker2);
+			for (Controller controller : controllers) {
+				Thread t = new Thread(controller);
 				t.start();
 			}
 			activated = true;

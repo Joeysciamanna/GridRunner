@@ -21,10 +21,14 @@ public class LobbyProvider {
 	
 	public static Lobby getLobbyById(long lobbyId) {
 		for(Lobby lobby : lobbies) {
-			if(lobby.getLobbyId() == lobbyId) {
+			if(lobby.getId() == lobbyId) {
 				return lobby;
 			}
 		}
 		return null;
+	}
+	
+	public static void removeLobby(long lobbyId) {
+		lobbies.remove(getLobbyById(lobbyId));
 	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <grid fieldHeight="32" fieldWidth="32" height="24" name="map1"
-	width="32">
+	width="32" playerCount="2">
 	<stack xPos="0" yPos="0">
 		<field code="ROCK:-" />
 	</stack>
@@ -114,7 +114,7 @@
 	</stack>
 	<stack xPos="5" yPos="1">
 		<field code="GRASS:-" />
-		<field code="PLAYER:1" />
+		<field code="PLAYER:0" />
 	</stack>
 	<stack xPos="6" yPos="1">
 		<field code="GRASS:-" />
@@ -142,7 +142,7 @@
 	</stack>
 	<stack xPos="14" yPos="1">
 		<field code="GRASS:-" />
-		<field code="PLAYER:2" />
+		<field code="PLAYER:1" />
 	</stack>
 	<stack xPos="15" yPos="1">
 		<field code="GRASS:-" />
