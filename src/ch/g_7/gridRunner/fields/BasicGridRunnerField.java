@@ -17,12 +17,9 @@ public abstract class BasicGridRunnerField extends ImagedField{
 		this.image = image;
 	}
 
-	public void doDamage() {
-		
-	}
 	
 	public void setIcon(Image image) {
-		setIcon(new ImageIcon(image.getPath()));
+		setImage(new ImageIcon(image.getPath()));
 		this.image = image;
 	}
 

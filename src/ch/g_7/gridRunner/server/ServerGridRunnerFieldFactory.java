@@ -1,25 +1,22 @@
-package ch.g_7.gridRunner.fieldCreation;
+package ch.g_7.gridRunner.server;
 
 import ch.g_7.gridEngine.field.Field;
-import ch.g_7.gridEngine.field.building.DefaultFieldFactory;
 import ch.g_7.gridEngine.field.building.FieldCode;
+import ch.g_7.gridRunner.fieldCreation.GridRunnerFieldFactory;
 import ch.g_7.gridRunner.fields.Grass;
 import ch.g_7.gridRunner.fields.Rock;
 import ch.g_7.gridRunner.fields.controlable.Player;
+import ch.g_7.gridRunner.server.player.VirtualPlayer;
 
-public class GridRunnerFieldFactory extends DefaultFieldFactory{
+public class ServerGridRunnerFieldFactory extends GridRunnerFieldFactory{
 
 	@Override
 	public Field<?> getField(FieldCode code) {
 		switch (code.getFieldType()) {
 		case "PLAYER":
-			return new Player(Integer.parseInt(code.getAdditionalArguments()[0]));
-		case "GRASS":
-			return new Grass();
-		case "ROCK":
-			return new Rock();
+			return new VirtualPlayer(Integer.parseInt(code.getAdditionalArguments()[0]));
 		default:
-			return null;
+			return super.getField(code);
 		}
 	}
 }
