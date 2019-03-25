@@ -2,8 +2,8 @@ package ch.g_7.gridRunner.controller;
 
 import java.rmi.RemoteException;
 
-import ch.g_7.gridRunner.base.Controlable;
 import ch.g_7.gridRunner.base.Startable;
+import ch.g_7.gridRunner.field.controlable.Controlable;
 import ch.g_7.gridRunner.server.player.PlayerAgent;
 
 public class SynchronizedController extends Controller<Controlable> implements Startable, Runnable{

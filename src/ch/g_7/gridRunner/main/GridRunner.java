@@ -2,6 +2,8 @@ package ch.g_7.gridRunner.main;
 
 import java.awt.event.KeyListener;
 import java.rmi.RemoteException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -46,7 +48,16 @@ public class GridRunner {
 		window.add(gridPanel);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
-		game.start();
+		
+		
+		
+		
+		new Timer().schedule( new TimerTask() {
+		            @Override
+		            public void run() {
+		                game.start();
+		            }
+		        }, 5000 );
 	}
 	
 	

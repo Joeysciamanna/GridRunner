@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.bot.search;
+package ch.g_7.gridRunner.controller.bot.search;
 
 import java.util.LinkedList;
 import java.util.Queue;

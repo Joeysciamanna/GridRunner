@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.bot.pathprovider;
+package ch.g_7.gridRunner.controller.bot.step;
 
 import ch.g_7.gridEngine.base.Dimension;
 

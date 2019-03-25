@@ -1,6 +1,6 @@
 package ch.g_7.gridRunner.controller;
 
-import ch.g_7.gridRunner.base.Controlable;
+import ch.g_7.gridRunner.field.controlable.Controlable;
 
 public class Controller<T extends Controlable> {
 

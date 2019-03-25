@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.bot.search;
+package ch.g_7.gridRunner.controller.bot.search;
 
 import java.util.ArrayList;
 
@@ -48,10 +48,6 @@ public abstract class Searcher {
 	
 	public void setStart(Field<?> start) {
 		this.start = start;
-	}
-	
-	public FieldGrid getGrid() {
-		return grid;
 	}
 	
 	protected void setVisited(Coordinate c) {

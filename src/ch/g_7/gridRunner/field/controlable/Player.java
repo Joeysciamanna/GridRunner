@@ -3,7 +3,6 @@ package ch.g_7.gridRunner.field.controlable;
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
-import ch.g_7.gridRunner.base.Controlable;
 import ch.g_7.gridRunner.field.BasicGridRunnerField;
 import ch.g_7.gridRunner.resources.Image;
 

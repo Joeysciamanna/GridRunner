@@ -3,8 +3,8 @@ package ch.g_7.gridRunner.game;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import ch.g_7.gridRunner.base.Controlable;
 import ch.g_7.gridRunner.controller.SynchronizedController;
+import ch.g_7.gridRunner.field.controlable.Controlable;
 import ch.g_7.gridRunner.server.game.GameAgent;
 import ch.g_7.gridRunner.server.player.PlayerAgent;
 

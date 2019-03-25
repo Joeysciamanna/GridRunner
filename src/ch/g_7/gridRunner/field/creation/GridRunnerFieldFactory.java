@@ -15,7 +15,7 @@ public class GridRunnerFieldFactory extends DefaultFieldFactory{
 		switch (code.getFieldType()) {
 		case "PLAYER":
 			Player player = null;
-			if(code.getAdditionalArguments().length>1 && code.getAdditionalArguments()[1].equals("bot")) {
+			if(code.containsArg("BOT")) {
 				player = new Bot(Integer.parseInt(code.getAdditionalArguments()[0]), code.getAdditionalArguments()[2]);
 				player.setBot(true);
 			}else {

@@ -4,8 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import ch.g_7.gridEngine.base.Dimension;
-import ch.g_7.gridRunner.base.Controlable;
 import ch.g_7.gridRunner.controller.Controller;
+import ch.g_7.gridRunner.field.controlable.Controlable;
 import ch.g_7.gridRunner.helper.KeySet;
 
 public class KeyController extends Controller<Controlable> implements KeyListener{
@@ -17,7 +17,6 @@ public class KeyController extends Controller<Controlable> implements KeyListene
 	
 	public KeyController(Controlable player, KeySet keySet) {
 		super(player);
-		controlable.setBot(false);
 		this.keySet = keySet;
 	}
 	

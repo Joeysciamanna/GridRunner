@@ -19,11 +19,6 @@ public class VirtualKeyController implements KeyListener{
 	
 	public VirtualKeyController(PlayerAgent controlable, KeySet keySet) {
 		this.controlable = controlable;
-		try {
-			controlable.setBot(false);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 		this.keySet = keySet;
 	}
 

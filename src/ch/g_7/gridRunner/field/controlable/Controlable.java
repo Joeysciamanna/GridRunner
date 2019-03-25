@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.base;
+package ch.g_7.gridRunner.field.controlable;
 
 import java.util.Vector;
 

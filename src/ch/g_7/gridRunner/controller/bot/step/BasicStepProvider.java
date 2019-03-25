@@ -1,11 +1,11 @@
-package ch.g_7.gridRunner.bot.pathprovider;
+package ch.g_7.gridRunner.controller.bot.step;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Position;
-import ch.g_7.gridRunner.bot.search.Coordinate;
+import ch.g_7.gridRunner.controller.bot.search.Coordinate;
 
 public class BasicStepProvider implements StepProvider{
 

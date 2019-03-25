@@ -8,18 +8,19 @@ import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Position;
 import ch.g_7.gridRunner.base.Startable;
 import ch.g_7.gridRunner.controller.Controller;
+import ch.g_7.gridRunner.field.controlable.Bot;
 import ch.g_7.gridRunner.field.controlable.Player;
 
 
-public class BounceController extends Controller<Player> implements Startable, Runnable{
+public class BounceController extends BotController<Bot> implements Runnable{
 	
 	private final static int SPEED = 200;
 	private Dimension direction;
 	private boolean run;
 	private Random random;
 	
-	public BounceController(Player player) {
-		super(player);
+	public BounceController(Bot bot) {
+		super(bot);
 		this.random = new Random();
 		this.direction = Dimension.DIRECTIONS[random.nextInt(4)];
 	}

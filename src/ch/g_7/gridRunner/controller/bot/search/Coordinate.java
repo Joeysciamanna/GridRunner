@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.bot.search;
+package ch.g_7.gridRunner.controller.bot.search;
 
 import ch.g_7.gridEngine.base.Position;
 
