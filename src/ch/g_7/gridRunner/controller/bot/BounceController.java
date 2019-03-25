@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.controller;
+package ch.g_7.gridRunner.controller.bot;
 
 import java.awt.Point;
 import java.util.Random;
@@ -7,7 +7,8 @@ import java.util.Vector;
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Position;
 import ch.g_7.gridRunner.base.Startable;
-import ch.g_7.gridRunner.fields.controlable.Player;
+import ch.g_7.gridRunner.controller.Controller;
+import ch.g_7.gridRunner.field.controlable.Player;
 
 
 public class BounceController extends Controller<Player> implements Startable, Runnable{

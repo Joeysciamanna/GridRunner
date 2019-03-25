@@ -25,7 +25,7 @@ public abstract class GameCreator<T extends Game,V extends GameCreationEvent> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if(mapReader.getMeta().fits(event)) {
+		if(!mapReader.getMeta().fits(event)) {
 			throw new GameFitsException();
 		}
 		getGame().setGrid(mapReader.getGrid());

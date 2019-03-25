@@ -1,27 +1,33 @@
-package ch.g_7.gridRunner.controller.soft;
+package ch.g_7.gridRunner.controller.human;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.rmi.RemoteException;
 
 import ch.g_7.gridEngine.base.Dimension;
-import ch.g_7.gridRunner.base.Controlable;
-import ch.g_7.gridRunner.controller.Controller;
-import ch.g_7.gridRunner.fields.controlable.Player;
 import ch.g_7.gridRunner.helper.KeySet;
+import ch.g_7.gridRunner.server.player.PlayerAgent;
 
-public class KeyController extends Controller implements KeyListener{
+public class VirtualKeyController implements KeyListener{
 
 	private final static int SPEED = 100;
 	private final static int DELAY = 250;
 	private KeySet keySet;
 	private KeyExecutor[] keyExecutors = new KeyExecutor[KeyEvent.KEY_LAST];
 	
-	public KeyController(Controlable player, KeySet keySet) {
-		super(player);
+	private PlayerAgent controlable;
+	
+	public VirtualKeyController(PlayerAgent controlable, KeySet keySet) {
+		this.controlable = controlable;
+		try {
+			controlable.setBot(false);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		this.keySet = keySet;
 	}
-	
-	private void execute(int keyCode) {
+
+	private void execute(int keyCode) throws RemoteException {
 		if(keyCode == keySet.getUp()) {
 			controlable.move(Dimension.UP);
 		}else if(keyCode == keySet.getLeft()) {
@@ -37,7 +43,11 @@ public class KeyController extends Controller implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(keyExecutors[e.getKeyCode()] == null) {
-			execute(e.getKeyCode());
+			try {
+				execute(e.getKeyCode());
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
 			createExecutive(e.getKeyCode());
 		}
 	}
@@ -81,7 +91,7 @@ public class KeyController extends Controller implements KeyListener{
 					i++;
 					Thread.sleep(SPEED);
 				}
-			} catch (InterruptedException e) {
+			} catch (InterruptedException | RemoteException e) {
 				e.printStackTrace();
 			}
 		}

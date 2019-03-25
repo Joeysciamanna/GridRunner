@@ -7,11 +7,10 @@ import java.util.Vector;
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.base.Startable;
-import ch.g_7.gridRunner.fields.controlable.Player;
+import ch.g_7.gridRunner.field.controlable.Player;
 
 public abstract class Game implements Startable{
 
-	private static Game actual;
 	private FieldGrid grid;
 	private MapMetaData metaData;
 	private ArrayList<Startable> startables;
@@ -19,11 +18,10 @@ public abstract class Game implements Startable{
 	
 	public Game() {
 		startables = new ArrayList<>();
-		actual = this;
 	}
 	
 	public Player getPlayer(int i) {
-		return (Player) grid.getFieldWhere(new FieldCode("PLAYER",String.valueOf(i)));
+		return (Player) grid.getFieldsWhere(new FieldCode("PLAYER",String.valueOf(i))).get(0);
 	}
 	
 	@Override
@@ -58,10 +56,6 @@ public abstract class Game implements Startable{
 	
 	public void addStartable(Startable startable) {
 		startables.add(startable);
-	}
-	
-	public static Game getActual() {
-		return actual;
 	}
 
 }

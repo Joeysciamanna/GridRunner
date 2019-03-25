@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.fields;
+package ch.g_7.gridRunner.field;
 
 import java.awt.Point;
 

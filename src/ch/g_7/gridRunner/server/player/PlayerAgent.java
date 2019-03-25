@@ -6,9 +6,8 @@ import java.rmi.RemoteException;
 
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Position;
-import ch.g_7.gridRunner.base.Controlable;
 
-public interface VirtualPlayerAgent extends Remote, Serializable {
+public interface PlayerAgent extends Remote, Serializable {
 	
 	public boolean move(Dimension d) throws RemoteException;
 	
@@ -17,4 +16,6 @@ public interface VirtualPlayerAgent extends Remote, Serializable {
 	public void setBot(boolean b) throws RemoteException;
 
 	public Position getPosition() throws RemoteException;
+	
+	public int getPlayerNr() throws RemoteException;
 }

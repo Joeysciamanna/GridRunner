@@ -14,10 +14,10 @@ public class MapMetaData extends MetaInfo {
 	public void set(String key, String value) {
 		switch (key) {
 		case "online":
-			online = value == "true";
+			online = value.equals("true");
 			break;
 		case "offline":
-			offline = value == "true";
+			offline = value.equals("true");
 			break;
 		case "maxPlayers":
 			maxPlayers = Integer.valueOf(value);
@@ -30,15 +30,19 @@ public class MapMetaData extends MetaInfo {
 
 	public boolean fits(GameCreationEvent event) {
 		if(event.isOnline() && !online) {
+			System.out.println("1");
 			return false;
 		}
 		if(!event.isOnline() && !offline) {
+			System.out.println("2");
 			return false;
 		}
 		if(event.getPlayerCount()<minPlayers) {
+			System.out.println("3");
 			return false;
 		}
 		if(event.getPlayerCount()>maxPlayers) {
+			System.out.println("4");
 			return false;
 		}
 		return true;

@@ -33,6 +33,26 @@ public abstract class Searcher {
 		}
 		return coordinates;
 	}
+
+	public Field<?> getAim() {
+		return aim;
+	}
+	
+	public void setAim(Field<?> aim) {
+		this.aim = aim;
+	}
+	
+	public Field<?> getStart() {
+		return start;
+	}
+	
+	public void setStart(Field<?> start) {
+		this.start = start;
+	}
+	
+	public FieldGrid getGrid() {
+		return grid;
+	}
 	
 	protected void setVisited(Coordinate c) {
 		visited.add(c);

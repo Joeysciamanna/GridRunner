@@ -17,7 +17,7 @@ public class IDProvider {
 		}
 		List<Integer> group = idGroups.get(groupName);
 		int id = generateId();
-		while (group.contains(id)) {
+		while (group.contains(id) || id <= 0) {
 			id = generateId();
 		}
 		group.add(id);

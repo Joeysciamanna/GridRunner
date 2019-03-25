@@ -8,5 +8,7 @@ import ch.g_7.gridRunner.game.creation.event.OnlineGameCreationEvent;
 
 public interface GameAgent extends Remote, Serializable {
 
-	public OnlineGameCreationEvent join(int clientId) throws RemoteException;
+	public OnlineGameCreationEvent getGame(int clientId) throws RemoteException;
+
+	public void start() throws RemoteException;
 }

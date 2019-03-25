@@ -1,29 +1,37 @@
 package ch.g_7.gridRunner.connection;
 
-import java.lang.invoke.MethodHandles.Lookup;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import ch.g_7.gridRunner.server.player.VirtualPlayerAgent;
+import ch.g_7.gridRunner.server.agent.Agents;
+import ch.g_7.gridRunner.server.clientId.ClientIdProviderAgent;
+import ch.g_7.gridRunner.server.lobbyProvider.LobbyProviderAgent;
 
 public class ServerConnectionProvider {
 
 private static final String DOMAIN = "rmi://localhost:1109/";
 	
-	private static VirtualPlayerAgent virtualPlayerAgent;
-
+	private static ClientIdProviderAgent clientIdProviderAgent;
+	private static LobbyProviderAgent lobbyProviderAgent;
 	
-	public static VirtualPlayerAgent getPlayerStatusAgent() {
-		if(virtualPlayerAgent==null) {
-			virtualPlayerAgent = (VirtualPlayerAgent) lookup("name");
+	public static LobbyProviderAgent getLobbyProviderAgent() {
+		if(lobbyProviderAgent==null) {
+			lobbyProviderAgent = (LobbyProviderAgent) lookup(Agents.LOBBY_PROVIDER);
 		}
-		return virtualPlayerAgent;
+		return lobbyProviderAgent;
 	}
 
-	private static Remote lookup(String name) {
+	public static ClientIdProviderAgent getClientIdAgent() {
+		if(clientIdProviderAgent==null) {
+			clientIdProviderAgent = (ClientIdProviderAgent) lookup(Agents.CLIENT_ID);
+		}
+		return clientIdProviderAgent;
+	}
+	
+	public static Remote lookup(String name) {
 		try {
 			return Naming.lookup(DOMAIN+name);
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
@@ -31,4 +39,11 @@ private static final String DOMAIN = "rmi://localhost:1109/";
 		}
 	}
 	
+	public static Remote lookup(Agents agent) {
+		try {
+			return Naming.lookup(DOMAIN+agent.toString());
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

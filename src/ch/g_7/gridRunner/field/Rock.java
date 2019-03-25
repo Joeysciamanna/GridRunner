@@ -1,4 +1,4 @@
-package ch.g_7.gridRunner.fields;
+package ch.g_7.gridRunner.field;
 
 import ch.g_7.gridEngine.field.Field;
 import ch.g_7.gridEngine.field.building.FieldCode;

@@ -1,10 +1,15 @@
 package ch.g_7.gridRunner.bot.pathprovider;
 
+import java.util.ArrayList;
+
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Localizable;
+import ch.g_7.gridEngine.field.Field;
+import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.base.Startable;
 import ch.g_7.gridRunner.bot.search.Coordinate;
 import ch.g_7.gridRunner.bot.search.Searcher;
+import ch.g_7.gridRunner.field.controlable.Player;
 
 public class RefreshingSearchPathProvider extends BasicStepProvider implements Startable{
 
@@ -48,13 +53,21 @@ public class RefreshingSearchPathProvider extends BasicStepProvider implements S
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				searcher.setAim(getAim());
 				Coordinate c = searcher.solve();
 				setCoordinates(c);
 			}
 		}
+
+		private Field<?> getAim(){
+			ArrayList<Field<?>> aims = searcher.getGrid().getNearestFieldsWhere(new FieldCode("PLAYER"),searcher.getStart().getPosition());
+			for (Field<?> field : aims) {
+				if(!((Player)field).isBot()) {
+					return field;
+				}
+			}
+			return aims.get(0);
+		}
 	}
-	
-	
-	
 
 }

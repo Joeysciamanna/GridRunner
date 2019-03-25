@@ -5,11 +5,11 @@ import javax.swing.ImageIcon;
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Position;
 import ch.g_7.gridEngine.core.FieldStack;
-import ch.g_7.gridRunner.fields.controlable.Player;
+import ch.g_7.gridRunner.field.controlable.Player;
 
-public class VirtualPlayer extends Player{
+public class ServersidePlayer extends Player{
 
-	public VirtualPlayer(int player) {
+	public ServersidePlayer(int player) {
 		super(player);
 	}
 

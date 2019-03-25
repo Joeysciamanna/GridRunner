@@ -19,7 +19,7 @@ public class GameCreationEvent implements Serializable{
 		this.map = map;
 		this.playerCount = playerCount;
 		this.online = online;
-		this.simulated = false;
+		this.simulated = simulated;
 	}
 	
 	public String getMap() {
