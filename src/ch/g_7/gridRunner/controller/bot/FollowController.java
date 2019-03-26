@@ -8,14 +8,14 @@ import ch.g_7.gridRunner.controller.bot.search.Searcher;
 import ch.g_7.gridRunner.controller.bot.step.RefreshingSearchPathStepProvider;
 import ch.g_7.gridRunner.field.controlable.Bot;
 
-public class FollowController extends AdvancedBotController<Bot> implements Runnable{
+public class FollowController extends BotController implements Runnable{
 
 	private static final int SPEED = 200;
-	private boolean run;
 	private RefreshingSearchPathStepProvider stepProvider;
+	private boolean run;
 	
 	public FollowController(Bot controlable, AimProvider aimProvider, FieldGrid grid, Searcher searcher) {
-		super(controlable, aimProvider, grid);
+		super(controlable);
 		stepProvider = new RefreshingSearchPathStepProvider(searcher, aimProvider);
 	}
 
@@ -41,6 +41,7 @@ public class FollowController extends AdvancedBotController<Bot> implements Runn
 	@Override
 	public void start() {
 		if(!run) {
+			stepProvider.start();
 			run=true;
 			Thread t = new Thread(this);
 			t.start();
@@ -51,5 +52,11 @@ public class FollowController extends AdvancedBotController<Bot> implements Runn
 	@Override
 	public void stop() {
 		run = false;
+		stepProvider.stop();
+	}
+
+	@Override
+	public String getControllerName() {
+		return "FollowController";
 	}
 }

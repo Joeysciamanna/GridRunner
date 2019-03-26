@@ -2,6 +2,7 @@ package ch.g_7.gridRunner.controller.bot.creation;
 
 import java.util.Random;
 
+import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.controller.bot.BotController;
 import ch.g_7.gridRunner.controller.bot.BounceController;
@@ -12,19 +13,15 @@ import ch.g_7.gridRunner.field.controlable.Bot;
 
 public class BotControllerFactory {
 	
-	public static BotController<?> getBotController(Bot bot, String botControllerName){
+	public static BotController getBotController(String botControllerName,Bot bot, FieldGrid grid){
 		switch (botControllerName) {
 		case "BounceController":
-			return new BounceController(bot);
+			return new BounceController(bot, grid);
 		case "BreadthFirstSearcher":
-			return new FollowController(bot, new NearestAimProvider(bot, bot.getGrid()), bot.getGrid(), new BreadthFirstSearcher(bot.getGrid(), bot, bot));
+			return new FollowController(bot, new NearestAimProvider(bot, grid),grid, new BreadthFirstSearcher(grid, bot, bot));
 		default:
-			return getBotController(bot,randomBotControllerName());
+			return getBotController(randomBotControllerName(),bot,grid);
 		}
-	}
-
-	public static BotController<?> getBotController(Bot bot){
-		return getBotController(bot, bot.getCode().getAdditionalArguments().length > 2 ? bot.getCode().getAdditionalArguments()[2] : randomBotControllerName());
 	}
 	
 	private static String randomBotControllerName() {

@@ -8,6 +8,5 @@ public class Controller<T extends Controlable> {
 	
 	public Controller(T controlable) {
 		this.controlable = controlable;
-		controlable.setBot(true);
 	}
 }

@@ -5,6 +5,8 @@ import ch.g_7.gridRunner.controller.bot.creation.BotControllerFactory;
 import ch.g_7.gridRunner.controller.human.KeyController;
 import ch.g_7.gridRunner.field.controlable.Bot;
 import ch.g_7.gridRunner.field.controlable.Player;
+import ch.g_7.gridRunner.field.spawn.Spawn;
+import ch.g_7.gridRunner.field.spawn.SpawnData;
 import ch.g_7.gridRunner.game.OfflineGame;
 import ch.g_7.gridRunner.game.creation.event.GameCreationEvent;
 import ch.g_7.gridRunner.helper.KeySet;
@@ -23,20 +25,21 @@ public class OfflineGameCreator extends GameCreator<OfflineGame,GameCreationEven
 		
 		boolean playerSet = false;
 		
-		for(int i = 0; i<event.getPlayerCount(); i++) {
-			Player player = game.getPlayer(i+1);
-			if(!player.isBot() && !playerSet) {
+		for(int i = 1; i<=event.getPlayerCount(); i++) {
+			SpawnData spawnData = game.getSpawn(i).getSpawnData();
+			if(spawnData.isPlayer() && !playerSet) {
+				Player player = new Player(i);
+				game.addPlayer(player, spawnData.getPosition());
 				KeyController keyController = new KeyController(player, KeySet.WASD);
 				game.addListner(keyController);
 				playerSet = true;
-				game.setPlayerAsUsed(i+1);
-			} else if(player.isBot()){
-				BotController<?> controller = BotControllerFactory.getBotController((Bot) player);
+			} else if(spawnData.isBot()){
+				Bot bot = new Bot(i, spawnData.getBotController());
+				game.addPlayer(bot, spawnData.getPosition());
+				BotController controller = BotControllerFactory.getBotController(spawnData.getBotController(), bot, game.getGrid());
 				game.addStartable(controller);
-				game.setPlayerAsUsed(i+1);
 			}
 		}
-		game.removeUnUsedPlayers();
 	}
 
 	

@@ -10,47 +10,35 @@ import ch.g_7.gridEngine.field.Field;
 import ch.g_7.gridEngine.field.building.FieldCode;
 import ch.g_7.gridRunner.base.Startable;
 import ch.g_7.gridRunner.field.controlable.Player;
+import ch.g_7.gridRunner.field.spawn.Spawn;
 
 public abstract class Game implements Startable{
 
 	private FieldGrid grid;
 	private MapMetaData metaData;
 	private ArrayList<Startable> startables;
-	private ArrayList<Integer> usedPlayers;
 	
 	public Game() {
 		startables = new ArrayList<>();
-		usedPlayers = new ArrayList<>();
 	}
 	
-	public Player getPlayer(int i) {
-		ArrayList<Field<?>> players = grid.getFieldsWhere(new FieldCode("PLAYER",String.valueOf(i)));
-		return players.size() > 0 ? (Player) players.get(0) : null;
+	public Spawn getSpawn(int i) {
+		ArrayList<Field<?>> spawns = grid.getFieldsWhere(new FieldCode("SPAWN",String.valueOf(i)));
+		return spawns.size() > 0 ? (Spawn) spawns.get(0) : null;
 	}
 	
-	public ArrayList<Player> getPlayers() {
-		ArrayList<Player> players = new ArrayList<>();
-		int i = 1;
-		Player player = getPlayer(i);
-		while (player!=null) {
-			players.add(player);
-			player = getPlayer(++i);
+	public ArrayList<Spawn> getSpawns() {
+		ArrayList<Field<?>> fields = grid.getFieldsWhere(new FieldCode("SPAWN"));
+		ArrayList<Spawn> spawns = new ArrayList<>();
+		for (Field<?> field : fields) {
+			spawns.add((Spawn) field);
 		}
-		return players;
+		return spawns;
 	}
 	
-	public void setPlayerAsUsed(int i) {
-		usedPlayers.add(i);
+	public void addPlayer(Player player, Position position) {
+		grid.addField(player, position);
 	}
-	
-	public void removeUnUsedPlayers() {
-		for (Player p : getPlayers()) {
-			if(!usedPlayers.contains(p.getPlayerNr())) {
-				p.removeSelf();
-			}
-		}
-	}
-	
 	
 	@Override
 	public void start() {

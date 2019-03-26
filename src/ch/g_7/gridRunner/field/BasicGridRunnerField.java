@@ -22,6 +22,5 @@ public abstract class BasicGridRunnerField extends ImagedField{
 		setImage(new ImageIcon(image.getPath()));
 		this.image = image;
 	}
-
 	
 }

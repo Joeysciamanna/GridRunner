@@ -34,8 +34,8 @@ public class GridRunner {
 
 		
 
-		//OfflineGame game = initOffline();
-		OnlineGame game = initOnline();
+		OfflineGame game = initOffline();
+		//OnlineGame game = initOnline();
 		
 		
 		game.getGrid().setSize(new Dimension(600, 600));

@@ -6,21 +6,26 @@ import java.util.Vector;
 
 import ch.g_7.gridEngine.base.Dimension;
 import ch.g_7.gridEngine.base.Position;
+import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridRunner.base.Startable;
 import ch.g_7.gridRunner.controller.Controller;
+import ch.g_7.gridRunner.controller.bot.aim.AimProvider;
 import ch.g_7.gridRunner.field.controlable.Bot;
 import ch.g_7.gridRunner.field.controlable.Player;
 
 
-public class BounceController extends BotController<Bot> implements Runnable{
-	
+public class BounceController extends BotController implements Runnable{
+
 	private final static int SPEED = 200;
 	private Dimension direction;
-	private boolean run;
+	private FieldGrid grid;
 	private Random random;
 	
-	public BounceController(Bot bot) {
+	private boolean run;
+	
+	public BounceController(Bot bot, FieldGrid grid) {
 		super(bot);
+		this.grid = grid;
 		this.random = new Random();
 		this.direction = Dimension.DIRECTIONS[random.nextInt(4)];
 	}
@@ -41,12 +46,12 @@ public class BounceController extends BotController<Bot> implements Runnable{
 		Vector<Dimension> posibilities = new Vector<>();
 		
 		Position p = controlable.getPosition().increase(direction);
-		if(controlable.getGrid().contains(p) && controlable.getGrid().getStackAt(p).canFieldGetAdded(controlable)) {
+		if(grid.contains(p) && grid.getStackAt(p).canFieldGetAdded(controlable)) {
 			posibilities.add(direction);
 		}else {
 			for(Dimension d : Dimension.DIRECTIONS) {
 				p = controlable.getPosition().increase(d);
-				if (controlable.getGrid().contains(p) && controlable.getGrid().getStackAt(p).canFieldGetAdded(controlable)) {
+				if (grid.contains(p) && grid.getStackAt(p).canFieldGetAdded(controlable)) {
 					posibilities.add(d);
 				}
 			}
@@ -70,6 +75,11 @@ public class BounceController extends BotController<Bot> implements Runnable{
 	@Override
 	public void stop() {
 		run = false;
+	}
+
+	@Override
+	public String getControllerName() {
+		return "BounceControllerp0";
 	}
 
 }

@@ -16,9 +16,7 @@ public enum Image implements Serializable{
 	GRASS("resources/fields/GRASS.png"),
 	ROCK("resources/fields/ROCK.png"),
 	
-	MAIN_VIEW("resources/images/MAIN-VIEW.png"),
-	START("resources/images/START.png"),
-	LOADING("resources/images/LOADING.gif");
+	VOID("");
 	
 	
 	private String path;

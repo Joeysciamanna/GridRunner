@@ -11,8 +11,6 @@ public interface Controlable {
 	public boolean move(Dimension d);
 	
 	public boolean isBot();
-	
-	public void setBot(boolean b);
 
 	public Position getPosition();
 

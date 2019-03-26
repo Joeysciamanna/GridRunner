@@ -25,7 +25,7 @@ public class NearestAimProvider implements AimProvider{
 				return (Player) field;
 			}
 		}
-		return (Player) aims.get(0);
+		return aims.size() > 0 ? (Player) aims.get(0) : getAim();
 	}
 
 }

@@ -9,7 +9,6 @@ import ch.g_7.gridRunner.resources.Image;
 public class Player extends BasicGridRunnerField implements Controlable{
 
 	private int playerNr;
-	private boolean bot;
 	
 	public Player(int player) {
 		super(Image.PLAYER1_UP);
@@ -38,19 +37,10 @@ public class Player extends BasicGridRunnerField implements Controlable{
 	public int getPlayerNr() {
 		return playerNr;
 	}
-	
-	public FieldGrid getGrid() {
-		return stack.getGrid();
-	}
 
 	@Override
 	public boolean isBot() {
-		return bot;
-	}
-
-	@Override
-	public void setBot(boolean b) {
-		bot = b;
+		return false;
 	}
 	
 }

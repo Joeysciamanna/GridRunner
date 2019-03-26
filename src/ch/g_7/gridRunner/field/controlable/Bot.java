@@ -8,7 +8,6 @@ public class Bot extends Player{
 	
 	public Bot(int player,String botControllerName) {
 		super(player);
-		setBot(true);
 	}
 
 	@Override
@@ -18,5 +17,10 @@ public class Bot extends Player{
 	
 	public String getBotControllerName() {
 		return botControllerName;
+	}
+	
+	@Override
+	public boolean isBot() {
+		return true;
 	}
 }
