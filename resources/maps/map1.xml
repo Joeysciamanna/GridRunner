@@ -114,7 +114,7 @@
 	</stack>
 	<stack xPos="5" yPos="1">
 		<field code="GRASS:-" />
-		<field code="PLAYER:0" />
+		<field code="PLAYER:1" />
 	</stack>
 	<stack xPos="6" yPos="1">
 		<field code="GRASS:-" />
@@ -142,7 +142,7 @@
 	</stack>
 	<stack xPos="14" yPos="1">
 		<field code="GRASS:-" />
-		<field code="PLAYER:1" />
+		<field code="PLAYER:2" />
 	</stack>
 	<stack xPos="15" yPos="1">
 		<field code="GRASS:-" />

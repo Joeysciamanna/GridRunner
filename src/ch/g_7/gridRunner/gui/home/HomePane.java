@@ -14,12 +14,11 @@ import ch.g_7.gridRunner.gameCreation.GameCreatorProducer;
 import ch.g_7.gridRunner.helper.AsyncGameStarter;
 import ch.g_7.gridRunner.identification.ClientIdProvider;
 
-public class MainPane implements PanelWrapper<JPanel>{
+public class HomePane implements PanelWrapper<JPanel>{
 
 	private JPanel panel;
-	private static MainPane instance;
 	
-	private MainPane() {
+	public HomePane() {
 		panel = new JPanel();
 		AsyncGameStarter gameStarter = new AsyncGameStarter(panel,GameCreatorProducer.getGameCreator(new GameCreationEvent(true,"homeMap",1,ClientIdProvider.getClientId())));
 		gameStarter.onGameStart(new Lambda<Void, AsyncGameStarter>() {
@@ -42,10 +41,5 @@ public class MainPane implements PanelWrapper<JPanel>{
 		return panel;
 	}
 
-	public static MainPane getInstance() {
-		if (instance == null) {
-			instance = new MainPane();
-		}
-		return instance;
-	}
+
 }

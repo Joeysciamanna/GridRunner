@@ -29,7 +29,7 @@ public class Lobby {
 	}
 	
 	public LobbyData getLobbyData() {
-		return new LobbyData(event, getPlayerCount(), closed, gameId, players);
+		return new LobbyData(event, getPlayerCount(), gameId, players);
 	}
 	
 	public synchronized void addPlayer(long id) {

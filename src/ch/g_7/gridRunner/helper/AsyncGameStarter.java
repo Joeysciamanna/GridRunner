@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import ch.g_7.gridEngine.core.FieldGrid;
 import ch.g_7.gridEngine.helper.Calculator;
 import ch.g_7.gridEngine.helper.Lambda;
+import ch.g_7.gridRunner.controller.Controller;
 import ch.g_7.gridRunner.gameCreation.GameCreator;
 import ch.g_7.gridRunner.gameCreation.GameInstace;
 import ch.g_7.gridRunner.gui.Window;
@@ -31,8 +32,9 @@ public class AsyncGameStarter extends TimerTask{
 
 	public void startStarting() {
 		timer = new Timer();
-		timer.schedule(this, 100);
 		creator.create();
+		timer.schedule(this, 100);
+		
 	}
 	
 	@Override
@@ -57,6 +59,10 @@ public class AsyncGameStarter extends TimerTask{
 		panel.add(inventory.getPanel());
 		panel.setSize(new Dimension(gridSize.width, gridSize.height + grid.getFieldSize().height));
 		game.activate();
+		
+		for(Controller c : game.getControllers()) {
+			Window.addController(c);
+		}
 		
 		if(onGameStart != null) {
 			onGameStart.apply(this);

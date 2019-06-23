@@ -1,5 +1,6 @@
 package ch.g_7.gridRunner.gameCreation;
 
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import ch.g_7.gridEngine.core.FieldGrid;
@@ -14,6 +15,12 @@ public class GameInstace {
 	private ArrayList<Controller> controllers;
 	private ArrayList<PlayerStatusWorker> workers;
 	private boolean activated;
+	
+	public GameInstace() {
+		controllers = new ArrayList<>();
+		workers = new ArrayList<>();
+	}
+	
 	
 	public void setGrid(FieldGrid grid) {
 		this.grid = grid;
@@ -63,6 +70,11 @@ public class GameInstace {
 			}
 			activated = true;
 		}
+	}
+
+
+	public ArrayList<Controller> getControllers() {
+		return controllers;
 	}
 	
 }

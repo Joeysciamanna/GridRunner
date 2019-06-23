@@ -9,14 +9,12 @@ public class LobbyData {
 
 	private GameCreationEvent event;
 	private int actualPlayerCount;
-	private boolean readyToStart;
 	private long gameId;
 	private ArrayList<Long> players;
 	
-	public LobbyData(GameCreationEvent event, int actualPlayerCount, boolean readyToStart, long gameId,ArrayList<Long> players) {
+	public LobbyData(GameCreationEvent event, int actualPlayerCount, long gameId,ArrayList<Long> players) {
 		this.event = event;
 		this.actualPlayerCount = actualPlayerCount;
-		this.readyToStart = readyToStart;
 		this.gameId = gameId;
 		this.players = players;
 	}
@@ -28,7 +26,7 @@ public class LobbyData {
 		return actualPlayerCount;
 	}
 	public boolean isReadyToStart() {
-		return readyToStart;
+		return gameId!=0;
 	}
 	
 }

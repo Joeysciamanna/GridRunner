@@ -12,9 +12,9 @@ public class Player extends BasicGridRunnerField implements Movable{
 	private long cleintId;
 	private int playerNr;
 	
-	public Player(int player) {
-		super(Image.valueOf("PLAYER" + player + "_UP"));
-		this.playerNr = player;
+	public Player(int playerNr) {
+		super(Image.valueOf("PLAYER" + playerNr + "_UP"));
+		this.playerNr = playerNr;
 	}
 
 	@Override

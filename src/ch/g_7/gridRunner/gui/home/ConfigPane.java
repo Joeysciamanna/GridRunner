@@ -12,9 +12,8 @@ import ch.g_7.gridEngine.stream.MapReader;
 public class ConfigPane implements PanelWrapper<JPanel>{
 
 	private JPanel panel;
-	private static ConfigPane instance;
 	
-	private ConfigPane() {
+	public ConfigPane() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(800,800);
@@ -26,10 +25,4 @@ public class ConfigPane implements PanelWrapper<JPanel>{
 		return panel;
 	}
 
-	public static ConfigPane getInstance() {
-		if (instance == null) {
-			instance = new ConfigPane();
-		}
-		return instance;
-	}
 }
