@@ -1,3 +1,0 @@
-cd  git\GridRunner\bin
-cd C:\workspace\java\Grid\GridRunner\bin
-java ch.g_7.gridRunner.server.Server
