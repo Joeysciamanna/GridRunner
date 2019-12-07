@@ -18,7 +18,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>ch.g_7</groupId>
-			<artifactId>util</artifactId>
+			<artifactId>Util</artifactId>
 			<version>0.1.0</version>
 		</dependency>
 		

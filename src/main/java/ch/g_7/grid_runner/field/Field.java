@@ -1,74 +1,52 @@
 package ch.g_7.grid_runner.field;
 
-import org.joml.Matrix4f;
-import org.joml.Matrix4fc;
+import org.joml.Vector2i;
 import org.joml.Vector3f;
-import org.joml.Vector3fc;
+import org.joml.Vector3i;
 
-import ch.g_7.graphite.entity.mesh.IMesh;
-import ch.g_7.graphite.entity.mesh.MeshFactory;
-import ch.g_7.graphite.entity.object.IObject;
-import ch.g_7.graphite.entity.viewmodel.IViewModel;
+import ch.g_7.graphite.base.entity.AbstractEntity;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
+import ch.g_7.graphite.base.mesh.IMesh;
+import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.rendering.BasicRenderable;
+import ch.g_7.graphite.util.Color;
 
-public class Field implements IObject {
+public class Field implements BasicRenderable {
 
-	private static IMesh mesh = MeshFactory.getRectangle(1, 1).build();
+	private static AbstractMesh FIELD_MESH = MeshFactory.getRectangle(1, 1).build();
+
 	
-	private IViewModel viewModel;
-	private Vector3f position;
-	private Vector3f rotation;
-	private float scale;
-	
-	@Override
-	public Matrix4fc getModelViewMatrix() {
-		return new Matrix4f().translate(position).rotateXYZ(rotation).scale(scale);
+	private Color color;
+	private Vector2i position;
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
-	public void setViewModel(IViewModel viewModel) {
-		this.viewModel = viewModel;
-	}
-
-	@Override
-	public IViewModel getViewModel() {
-		return viewModel;
-	}
-	
-	@Override
-	public Vector3fc getPosition() {
-		return position;
-	}
-	
-	public void setPosition(Vector3f position) {
+	public void setPosition(Vector2i position) {
 		this.position = position;
 	}
 
-	@Override
-	public Vector3fc getRotation() {
-		return rotation;
+	public Vector2i getPosition() {
+		return position;
 	}
 	
-	public void setRotation(Vector3f rotation) {
-		this.rotation = rotation;
+	public Color getColor() {
+		return color;
 	}
 
-	@Override
-	public float getScale() {
-		return scale;
-	}
-	
-	public void setScale(float scale) {
-		this.scale = scale;
+	public Texture getTexture() {
+		return null;
 	}
 
-	@Override
-	public void close() {
-		viewModel.close();
+	public IMesh getMesh() {
+		return FIELD_MESH;
 	}
 
-	@Override
+	public void close() {}
+
 	public void init() {}
-
 	
 	
-
 }
