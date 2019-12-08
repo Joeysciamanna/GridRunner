@@ -5,7 +5,7 @@ import org.joml.Vector2i;
 import ch.g_7.graphite.base.ui.util.MouseManager;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.grid_runner.field.Field;
+import ch.g_7.grid_runner.base.field.Field;
 import ch.g_7.grid_runner.rendering.FieldRenderClass;
 
 public class GridRunner extends Application {

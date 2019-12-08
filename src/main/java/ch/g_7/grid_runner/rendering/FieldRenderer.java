@@ -10,15 +10,17 @@ import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
 import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
-import ch.g_7.grid_runner.field.Field;
+import ch.g_7.grid_runner.base.FieldGrid;
+import ch.g_7.grid_runner.base.field.Field;
 
-public class FieldRenderer extends BasicRenderer<EntityShaderProgram, Field> implements ITransformation<Field>{
+public class FieldRenderer extends BasicRenderer<EntityShaderProgram, FieldGrid> implements ITransformation<Field>{
 
+	
+	
 	private Matrix4f viewMatrix;
 	private Field field;
 	
-	private int height;
-	private int width;
+	private int width, height;
 	
 //	private float maxX;
 	private float minX;
@@ -27,34 +29,35 @@ public class FieldRenderer extends BasicRenderer<EntityShaderProgram, Field> imp
 	
 	private float fieldSize;
 	
-	public FieldRenderer(int width, int height) {
+	public FieldRendereri) {
 		super(new EntityShaderProgram());
-		this.width = width;
-		this.height = height;
-		
-		this.fieldSize = 2f / (width > height ? width : height);
-		
-		if(width > height) {
-//			maxY += (width-height)*fieldSize/2;
-			minY += (width-height)*fieldSize/2;
-		}else if(width < height) {
-//			maxX += (height-width)*fieldSize/2;
-			minX += (height-width)*fieldSize/2;
-		}
-		
+
 		
 		
 		
 		viewMatrix = new Matrix4f();
 	}
 	
+
+	
 	@Override
-	protected void renderAll(List<Field> renderables) {
-		for (Field field : renderables) {
-			render(field, this);
+	protected void renderAll(List<FieldGrid> renderables) {
+		if(!renderables.isEmpty()) {
+			prepareFor(renderables.get(0));
+			for (Field field : renderables.get(0).getFields()) {
+				render(field, this);
+			}
 		}
 	}
 	
+	public void prepareFor(FieldGrid fieldGrid) {
+		
+	}
+	
+	@Override
+	public void prepareFor(Field r) {
+		this.field = r;
+	}
 	
 	@Override
 	protected void prepareTransformation(Window window, Camera camera) {
@@ -63,18 +66,18 @@ public class FieldRenderer extends BasicRenderer<EntityShaderProgram, Field> imp
 				(float) -camera.getPosition().z());
 	}
 
-	public void prepareFor(Field r) {
-		this.field = r;
-	}
+
 
 	public Matrix4f getViewMatrix() {
 		Matrix4f viewCurr = new Matrix4f(viewMatrix);
 		
-		float xPos =      (field.getPosition().x() * 2f / width  + minX) - 1f;
+		float xPos =      (field.getX() * 2f / width  + minX) - 1f;
 		float yPos = 1f - (field.getPosition().y() * 2f / height + minY);
 		
 		return viewCurr.translate(new Vector3f(xPos,yPos , 0)).scale(fieldSize);
 	}
+
+
 
 
 

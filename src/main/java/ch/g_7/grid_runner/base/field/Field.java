@@ -1,10 +1,5 @@
-package ch.g_7.grid_runner.field;
+package ch.g_7.grid_runner.base.field;
 
-import org.joml.Vector2i;
-import org.joml.Vector3f;
-import org.joml.Vector3i;
-
-import ch.g_7.graphite.base.entity.AbstractEntity;
 import ch.g_7.graphite.base.mesh.AbstractMesh;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshFactory;
@@ -18,18 +13,24 @@ public class Field implements BasicRenderable {
 
 	
 	private Color color;
-	private Vector2i position;
+	private int x, y;
 
 	public void setColor(Color color) {
 		this.color = color;
 	}
 
-	public void setPosition(Vector2i position) {
-		this.position = position;
-	}
 
-	public Vector2i getPosition() {
-		return position;
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setPosition(int x, int y){
+		this.x = x;
+		this.y = y;
 	}
 	
 	public Color getColor() {
