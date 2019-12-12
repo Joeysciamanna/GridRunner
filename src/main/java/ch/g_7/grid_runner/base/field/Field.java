@@ -1,15 +1,14 @@
 package ch.g_7.grid_runner.base.field;
 
-import ch.g_7.graphite.base.mesh.AbstractMesh;
-import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.mesh.IMesh2d;
+import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
-import ch.g_7.graphite.rendering.BasicRenderable;
+import ch.g_7.graphite.rendering.Basic2dRenderable;
 import ch.g_7.graphite.util.Color;
 
-public class Field implements BasicRenderable {
+public class Field implements Basic2dRenderable {
 
-	private static AbstractMesh FIELD_MESH = MeshFactory.getRectangle(1, 1).build();
+	private static IMesh2d FIELD_MESH = MeshFactory2d.getRectangle(1, 1).build();
 
 	
 	private Color color;
@@ -41,13 +40,15 @@ public class Field implements BasicRenderable {
 		return null;
 	}
 
-	public IMesh getMesh() {
+	public IMesh2d getMesh() {
 		return FIELD_MESH;
 	}
 
 	public void close() {}
 
-	public void init() {}
+	public void init() {
+		
+	}
 	
 	
 }
