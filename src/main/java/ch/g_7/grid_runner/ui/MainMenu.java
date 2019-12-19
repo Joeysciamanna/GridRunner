@@ -34,13 +34,13 @@ public final class MainMenu extends UIRootContainer {
 
 		DontCareLayoutPanel buttons = new DontCareLayoutPanel();
 		buttons.getPreferedWidth().reset().addPW(33);
-		buttons.getPreferedHeight().reset().addPW(33);
+		buttons.getPreferedHeight().reset().addPW(33).addPixel(50);
 		buttons.setColor(Color.getColor(255, 0, 255));
 		centering.set(buttons);
 
 		
 		UIButton startGame = new UIButton();
-		startGame.getPreferedHeight().reset().addPixel(30);
+		startGame.getPreferedHeight().reset().addPixel(15).addPF(15);
 		startGame.setColor(Color.getColor(255, 0, 0));
 		buttons.add(startGame);
 
