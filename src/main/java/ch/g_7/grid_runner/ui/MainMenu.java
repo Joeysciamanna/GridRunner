@@ -1,54 +1,55 @@
 package ch.g_7.grid_runner.ui;
 
-import ch.g_7.graphite.base.ui.UIButton;
-import ch.g_7.graphite.base.ui.UIRootContainer;
-import ch.g_7.graphite.base.ui.layout.CenterLayoutPanel;
-import ch.g_7.graphite.base.ui.layout.DontCareLayoutPanel;
-import ch.g_7.graphite.base.ui.util.UIMouseEvent;
-import ch.g_7.graphite.base.ui.util.UIMouseListner;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.ui.UIButton;
+import ch.g_7.graphite.ui.UIRootContainer;
+import ch.g_7.graphite.ui.layout.CenterLayoutPanel;
+import ch.g_7.graphite.ui.layout.ListLayoutPanel;
+import ch.g_7.graphite.ui.layout.SpaceSharingLayoutPanel;
 import ch.g_7.graphite.util.Color;
 
 public final class MainMenu extends UIRootContainer {
 
-	private static MainMenu instance;
+
+
+
 	
-	private MainMenu(Window window) {
+	public MainMenu(Window window) {
 		super(window);
+		createUI();
 	}
 
-	public static MainMenu getInstance(Window window) {
-		if(instance == null) {
-			instance = new MainMenu(window);
-		}
-		return instance;
-	}
-
-	@Override
-	public void init() {
-		super.init();
+	private void createUI() {
 		
-		CenterLayoutPanel centering = new CenterLayoutPanel();
-		centering.setColor(Color.getColor(0, 255, 255));
-		add(centering);
+		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
+		this.add(sharingLayoutPanel);
+		
+		ListLayoutPanel optionPanel = new ListLayoutPanel(ListLayoutPanel.X_AXIS);
+		optionPanel.setColor(Color.getColor(0, 255, 0));
+		optionPanel.getPreferedHeight().reset().addPF(5).addPixel(20);
+		optionPanel.getPlaceHolder().reset().addPixel(5);
+		sharingLayoutPanel.setMainPanel(optionPanel, SpaceSharingLayoutPanel.BUTTOM);
 
-		DontCareLayoutPanel buttons = new DontCareLayoutPanel();
-		buttons.getPreferedWidth().reset().addPW(33);
-		buttons.getPreferedHeight().reset().addPW(33).addPixel(50);
-		buttons.setColor(Color.getColor(255, 0, 255));
-		centering.set(buttons);
-
+		UIButton wikiButton = new UIButton();
+		wikiButton.getPreferedWidth().reset().add(wikiButton.getMaxHeight());
+		wikiButton.setColor(Color.getColor(100, 100, 100));
+		optionPanel.add(wikiButton);
+		
+		CenterLayoutPanel buttonPanel = new CenterLayoutPanel();
+		buttonPanel.setColor(Color.getColor(0, 255, 255));
+		sharingLayoutPanel.setAdjustablePanel(buttonPanel);
+		
+		ListLayoutPanel buttonsPanel = new ListLayoutPanel(ListLayoutPanel.Y_AXIS);
+		buttonsPanel.setColor(Color.getColor(0, 0, 255));
+		buttonsPanel.getPlaceHolder().addPixel(20).addPF(5);
+		buttonsPanel.getPreferedWidth().reset().addPixel(100).addPF(20);
+		buttonsPanel.getPreferedHeight().reset().addPixel(50).addPF(20);
+		buttonPanel.set(buttonsPanel);
 		
 		UIButton startGame = new UIButton();
-		startGame.getPreferedHeight().reset().addPixel(15).addPF(15);
-		startGame.setColor(Color.getColor(255, 0, 0));
-		buttons.add(startGame);
-
-
-
-		
-		
-		
+		startGame.getPreferedHeight().reset().addPixel(20).addPF(10);
+		startGame.setColor(Color.getColor(255, 255, 0));
+		buttonsPanel.add(startGame);
 		
 	}
 	
