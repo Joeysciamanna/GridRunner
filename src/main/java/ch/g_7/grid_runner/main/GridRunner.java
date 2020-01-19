@@ -3,8 +3,10 @@ package ch.g_7.grid_runner.main;
 import java.io.IOException;
 
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.core.RenderType;
+import ch.g_7.graphite.ui.scene.Scene;
+import ch.g_7.graphite.ui.scene.SceneNavigator;
 import ch.g_7.grid_runner.ui.MainMenu;
+import ch.g_7.grid_runner.ui.Scenes;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.logging.Logger;
 
@@ -16,6 +18,7 @@ public class GridRunner extends Application {
 
 	private final static Logger LOGGER = Logger.getInstance();
 
+	
 	private GridRunner() {
 		super("Grid Runner");
 	}
@@ -35,8 +38,14 @@ public class GridRunner extends Application {
 
 	@Override
 	public void init() {
-
-		getDimension().addObj(new MainMenu(getWindow()), RenderType.UI);
+		
+		SceneNavigator navigator = new SceneNavigator(getDimension());
+		
+		MainMenu mainMenu = new MainMenu(navigator, getWindow());
+		navigator.addScene(Scenes.MAIN_MENU, mainMenu);
+		navigator.goTo(Scenes.MAIN_MENU);
+		
+		
 		
 		
 		getWindow().setVisible(true);
