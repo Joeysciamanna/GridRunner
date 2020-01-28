@@ -29,11 +29,11 @@ public class GridRunner extends Application {
 		appInitializer.setDebugMode(true);
 		appInitializer.initLogger();
 		appInitializer.addConsoleLogWriters();
+		appInitializer.addFileLogWriters();
 		appInitializer.initProperties("properties.prop");
 		appInitializer.addDefaultConfigParams();
 		
 		new GridRunner().start();
-	
 	}
 
 	@Override
@@ -44,9 +44,7 @@ public class GridRunner extends Application {
 		MainMenu mainMenu = new MainMenu(navigator, getWindow());
 		navigator.addScene(Scenes.MAIN_MENU, mainMenu);
 		navigator.goTo(Scenes.MAIN_MENU);
-		
-		
-		
+
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
