@@ -7,6 +7,7 @@ import ch.g_7.graphite.ui.layout.ListLayoutPanel;
 import ch.g_7.graphite.ui.layout.SpaceSharingLayoutPanel;
 import ch.g_7.graphite.ui.scene.SceneNavigator;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.grid_runner.common.Images;
 import ch.g_7.util.common.IIdentifier;
 
 public final class MainMenu extends BaseScene {
@@ -47,16 +48,21 @@ public final class MainMenu extends BaseScene {
 
 		UIButton startGame = new UIButton();
 		startGame.getPreferedHeight().reset().addPixel(20).addPF(10);
-		startGame.setColor(Color.getColor(255, 255, 0));
+		startGame.setTexture(Images.START_GAME_BUTTON);
 		registerButton(Button.START_GAME, startGame);
-
 		buttonsPanel.add(startGame);
+		
+//		UIButton exitGame = new UIButton();
+//		exitGame.getPreferedHeight().reset().addPixel(20).addPF(10);
+//		exitGame.setTexture(Images.EXIT_GAME_BUTTON);
+//		registerButton(Button.EXIT_GAME, exitGame);
+//		buttonsPanel.add(exitGame);
 
 		super.doInit();
 	}
 
 	public static enum Button implements IIdentifier<Button>{
-		START_GAME, SETTINGS
+		START_GAME, SETTINGS, EXIT_GAME
 	}
 
 }
