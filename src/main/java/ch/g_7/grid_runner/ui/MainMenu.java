@@ -5,10 +5,7 @@ import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.layout.CenterLayoutPanel;
 import ch.g_7.graphite.ui.layout.ListLayoutPanel;
 import ch.g_7.graphite.ui.layout.SpaceSharingLayoutPanel;
-import ch.g_7.graphite.ui.scene.Scene;
 import ch.g_7.graphite.ui.scene.SceneNavigator;
-import ch.g_7.graphite.ui.util.UIMouseEvent;
-import ch.g_7.graphite.ui.util.UIMouseListner;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.common.IIdentifier;
 

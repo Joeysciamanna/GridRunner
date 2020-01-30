@@ -1,7 +1,9 @@
 package ch.g_7.grid_runner.ui;
 
-import ch.g_7.graphite.core.window.MouseEvent;
-import ch.g_7.graphite.core.window.MouseListner;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.scene.Scene;
@@ -9,11 +11,6 @@ import ch.g_7.graphite.ui.scene.SceneNavigator;
 import ch.g_7.graphite.ui.util.UIMouseEvent;
 import ch.g_7.graphite.ui.util.UIMouseListner;
 import ch.g_7.util.common.IIdentifier;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
 
 public class BaseScene extends Scene {
 

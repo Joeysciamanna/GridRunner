@@ -3,10 +3,9 @@ package ch.g_7.grid_runner.main;
 import java.io.IOException;
 
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.ui.scene.Scene;
 import ch.g_7.graphite.ui.scene.SceneNavigator;
 import ch.g_7.grid_runner.ui.MainMenu;
-import ch.g_7.grid_runner.ui.Scenes;
+import ch.g_7.grid_runner.ui.SceneType;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.logging.Logger;
 
@@ -23,15 +22,16 @@ public class GridRunner extends Application {
 		super("Grid Runner");
 	}
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 
 		AppInitializer appInitializer = new AppInitializer(ENV_APP_PATH, new Object() {});
 		appInitializer.setDebugMode(true);
 		appInitializer.initLogger();
-		appInitializer.addConsoleLogWriters();
-		appInitializer.addFileLogWriters();
-		appInitializer.initProperties("properties.prop");
-		appInitializer.addDefaultConfigParams();
+		appInitializer.addConsoleLoggers();
+		appInitializer.addFileLoggers();
+		appInitializer.initDefaultPropFiles("properties.prop");
+		appInitializer.addDefaultAppConfigParams();
 		
 		new GridRunner().start();
 	}
@@ -42,8 +42,8 @@ public class GridRunner extends Application {
 		SceneNavigator navigator = new SceneNavigator(getDimension());
 		
 		MainMenu mainMenu = new MainMenu(navigator, getWindow());
-		navigator.addScene(Scenes.MAIN_MENU, mainMenu);
-		navigator.goTo(Scenes.MAIN_MENU);
+		navigator.registerScene(SceneType.MAIN_MENU, mainMenu);
+		navigator.goTo(SceneType.MAIN_MENU);
 
 		
 		getWindow().setVisible(true);
