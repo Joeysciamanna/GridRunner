@@ -45,6 +45,7 @@ public class GridRunner extends Application {
 		navigator.registerScene(SceneType.MAIN_MENU, mainMenu);
 		navigator.goTo(SceneType.MAIN_MENU);
 
+		mainMenu.addButtonListner(MainMenu.Button.START_GAME, (e)->System.out.println("hi"));
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
