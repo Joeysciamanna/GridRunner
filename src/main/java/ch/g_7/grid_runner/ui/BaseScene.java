@@ -12,7 +12,7 @@ import ch.g_7.graphite.ui.util.UIMouseEvent;
 import ch.g_7.graphite.ui.util.UIMouseListner;
 import ch.g_7.util.common.IIdentifier;
 
-public class BaseScene extends Scene {
+public abstract class BaseScene extends Scene {
 
     private Map<IIdentifier<?>, UIButton> buttons;
 
@@ -20,6 +20,14 @@ public class BaseScene extends Scene {
         super(navigator, window);
         this.buttons = new HashMap<>();
     }
+    
+    @Override
+    protected void doInit() {
+    	super.doInit();
+    	initView();
+    }
+    
+    protected abstract void initView();
 
     protected void registerButton(IIdentifier<?> identifier, UIButton uiButton){
         buttons.put(identifier, uiButton);

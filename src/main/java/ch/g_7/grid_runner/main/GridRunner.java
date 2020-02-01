@@ -4,7 +4,8 @@ import java.io.IOException;
 
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.ui.scene.SceneNavigator;
-import ch.g_7.grid_runner.ui.MainMenu;
+import ch.g_7.grid_runner.ui.GameScene;
+import ch.g_7.grid_runner.ui.MainScene;
 import ch.g_7.grid_runner.ui.SceneType;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.logging.Logger;
@@ -41,11 +42,18 @@ public class GridRunner extends Application {
 		
 		SceneNavigator navigator = new SceneNavigator(getDimension());
 		
-		MainMenu mainMenu = new MainMenu(navigator, getWindow());
+		MainScene mainMenu = new MainScene(navigator, getWindow());
 		navigator.registerScene(SceneType.MAIN_MENU, mainMenu);
+		mainMenu.addButtonListner(MainScene.Button.START_GAME, (e)->navigator.goTo(SceneType.GAME));
+		mainMenu.addButtonListner(MainScene.Button.EXIT_GAME, (e)->stop());
+		
+		GameScene gameScene = new GameScene(navigator, getWindow());
+		navigator.registerScene(SceneType.GAME, gameScene);
+		
+		
 		navigator.goTo(SceneType.MAIN_MENU);
 
-		mainMenu.addButtonListner(MainMenu.Button.START_GAME, (e)->System.out.println("hi"));
+	
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

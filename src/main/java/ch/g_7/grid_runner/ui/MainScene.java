@@ -10,15 +10,15 @@ import ch.g_7.graphite.util.Color;
 import ch.g_7.grid_runner.common.Images;
 import ch.g_7.util.common.IIdentifier;
 
-public final class MainMenu extends BaseScene {
+public final class MainScene extends BaseScene {
 
-	public MainMenu(SceneNavigator navigator, Window window) {
+	public MainScene(SceneNavigator navigator, Window window) {
 		super(navigator, window);
 	}
 
 
 	@Override
-	protected void doInit() {
+	protected void initView() {
 
 		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
 		this.add(sharingLayoutPanel);
@@ -47,18 +47,18 @@ public final class MainMenu extends BaseScene {
 		buttonPanel.set(buttonsPanel);
 
 		UIButton startGame = new UIButton();
+		buttonsPanel.add(startGame);
 		startGame.getPreferedHeight().reset().addPixel(20).addPF(10);
 		startGame.setTexture(Images.START_GAME_BUTTON);
 		registerButton(Button.START_GAME, startGame);
-		buttonsPanel.add(startGame);
 		
-//		UIButton exitGame = new UIButton();
-//		exitGame.getPreferedHeight().reset().addPixel(20).addPF(10);
-//		exitGame.setTexture(Images.EXIT_GAME_BUTTON);
-//		registerButton(Button.EXIT_GAME, exitGame);
-//		buttonsPanel.add(exitGame);
-
-		super.doInit();
+		
+		UIButton exitGame = new UIButton();
+		buttonsPanel.add(exitGame);
+		exitGame.getPreferedHeight().reset().addPixel(20).addPF(10);
+		exitGame.setTexture(Images.EXIT_GAME_BUTTON);
+		registerButton(Button.EXIT_GAME, exitGame);
+		
 	}
 
 	public static enum Button implements IIdentifier<Button>{
